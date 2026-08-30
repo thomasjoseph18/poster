@@ -1,206 +1,209 @@
-:root {
-    --primary-blue: #0b3b60;
-    --secondary-gold: #f5b041;
-    --white: #ffffff;
-    --text-dark: #2c3e50;
-}
-
 body {
-    font-family: 'Noto Sans Malayalam', sans-serif;
-    background: linear-gradient(rgba(11, 59, 96, 0.85), rgba(11, 59, 96, 0.9)), 
-                url('https://images.unsplash.com/photo-1548625361-ec85718cb621?q=80&w=2000&auto=format&fit=crop') no-repeat center center fixed;
-    background-size: cover;
-    color: var(--text-dark);
-    margin: 0;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
+  font-family: 'Noto Sans Malayalam', sans-serif;
+  background: #4a3b31;
+  color: #333;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  padding: 40px;
 }
 
-.controls-wrapper {
-    background: rgba(255, 255, 255, 0.95);
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    margin-bottom: 30px;
-    width: 100%;
-    max-width: 800px;
-    box-sizing: border-box;
-    text-align: center;
-    z-index: 10;
+.main-container {
+  background: #fff;
+  border: 15px solid #d4af37;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  max-width: 1200px;
+  width: 100%;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
 }
 
+/* Header Section */
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.title-area h1 {
+  font-size: 4em;
+  color: #1e4d7d;
+  margin: 0;
+}
+
+.date-subtitle {
+  background: #a52a2a;
+  color: #fff;
+  padding: 10px 30px;
+  font-weight: bold;
+  font-size: 1.5em;
+  border-radius: 10px;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+/* Controls Section */
 .controls {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: space-around;
+  background: #e0d0b8;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
 }
 
-button, select {
-    padding: 10px 20px;
-    font-size: 1rem;
-    font-family: 'Noto Sans Malayalam', sans-serif;
-    font-weight: 600;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+.btn {
+  padding: 10px 25px;
+  border: 3px solid transparent;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.btn-primary { background-color: var(--primary-blue); color: var(--white); }
-.btn-primary:hover { background-color: #082a45; transform: translateY(-2px); }
+.btn-overall {
+  background: #bf9b30;
+  color: #fff;
+}
 
-.btn-secondary { background-color: var(--secondary-gold); color: var(--text-dark); }
-.btn-secondary:hover { background-color: #d49536; transform: translateY(-2px); }
+.btn-daily {
+  background: #a58e6f;
+  color: #fff;
+}
+
+.btn:hover, .btn.active {
+  border-color: #7b241c;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+#dateSelector {
+  padding: 10px;
+  font-family: inherit;
+  border: 3px solid #bf9b30;
+  border-radius: 5px;
+}
 
 .btn-download {
-    background-color: #27ae60;
-    color: white;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-.btn-download:hover { background-color: #219653; transform: translateY(-2px); }
-
-select {
-    border: 2px solid var(--primary-blue);
-    background-color: var(--white);
-    color: var(--primary-blue);
-    display: none;
+  background: #bf9b30;
+  color: #fff;
 }
 
-#poster-container {
+/* Split Layout */
+.poster-wrapper {
+  display: flex;
+  gap: 30px;
+}
+
+/* Left Side: Overall Schedule */
+#overallView {
+  flex: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  background: #f7f3e8;
+  padding: 20px;
+  border-radius: 15px;
+  border: 2px solid #e0d0b8;
+}
+
+.schedule-card {
+  background: #fff;
+  width: calc(50% - 10px);
+  border: 4px solid transparent;
+  border-radius: 10px;
+  padding: 15px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+  cursor: pointer;
+}
+
+.schedule-card:hover {
+  transform: translateY(-5px);
+  border-color: #d4af37;
+}
+
+.card-header-date {
+  background: #e0d0b8;
+  color: #1e4d7d;
+  font-weight: bold;
+  text-align: center;
+  padding: 8px;
+  border-radius: 5px;
+  font-size: 1.2em;
+}
+
+.card-events ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  font-size: 0.95em;
+  color: #555;
+}
+
+/* Right Side: Daily Focus */
+#dailyView {
+  flex: 1;
+  background: #fdfaf5;
+  border: 4px solid #d4af37;
+  border-radius: 15px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+#dailyImage {
+  width: 100%;
+  max-width: 300px;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  transition: opacity 0.5s ease;
+}
+
+#focusDate {
+  font-size: 2em;
+  color: #1e4d7d;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+#focusEvents {
+  width: 100%;
+  font-size: 1.1em;
+}
+
+#focusEvents ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+#focusEvents li {
+  padding: 8px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* Footer Section */
+.main-footer {
+  text-align: center;
+  font-size: 1.5em;
+  color: #7b241c;
+  font-weight: bold;
+  margin-top: 30px;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .poster-wrapper {
+    flex-direction: column;
+  }
+  .schedule-card {
     width: 100%;
-    max-width: 800px;
-    background-color: #fffdf9;
-    border-radius: 15px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-    overflow: hidden;
-    border: 8px solid var(--secondary-gold);
-    position: relative;
-}
-
-.fade-in {
-    animation: fadeIn 0.6s ease-in-out;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.poster-header {
-    text-align: center;
-    padding: 30px 20px 20px;
-    background: linear-gradient(to bottom, #fffdf9, #f4ead5);
-    border-bottom: 2px solid var(--secondary-gold);
-}
-
-.poster-header h1 {
-    color: var(--primary-blue);
-    font-size: 2.8rem;
-    margin: 0 0 10px 0;
-    text-shadow: 1px 1px 0px rgba(255,255,255,1);
-}
-
-.poster-header h3 {
-    color: #c0392b;
-    margin: 0;
-    font-size: 1.2rem;
-    font-weight: 700;
-}
-
-.poster-content {
-    padding: 30px;
-    background: url('https://www.transparenttextures.com/patterns/cream-paper.png');
-}
-
-.day-card {
-    background-color: var(--white);
-    border-left: 6px solid var(--primary-blue);
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 0 10px 10px 0;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.06);
-    transition: transform 0.3s ease;
-}
-
-.day-card:hover {
-    transform: translateX(5px);
-}
-
-.day-title {
-    color: var(--primary-blue);
-    font-size: 1.4rem;
-    font-weight: 700;
-    margin-bottom: 15px;
-    border-bottom: 2px dashed #e0e0e0;
-    padding-bottom: 10px;
-}
-
-.event-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.event-list li {
-    margin-bottom: 10px;
-    font-size: 1.15rem;
-    line-height: 1.6;
-    display: flex;
-    align-items: flex-start;
-}
-
-.special-note {
-    color: #c0392b;
-    font-weight: 600;
-    font-size: 0.95rem;
-    display: block;
-    margin-top: 5px;
-    margin-left: 25px;
-}
-
-.footer-note {
-    text-align: center;
-    margin-top: 20px;
-    padding: 20px;
-    background-color: var(--primary-blue);
-    color: var(--secondary-gold);
-    font-weight: 600;
-    font-size: 1.1rem;
-}
-
-.single-day-poster .day-card {
-    border: 3px solid var(--primary-blue);
-    border-radius: 12px;
-    padding: 40px 30px;
-    text-align: center;
-    background-color: #fff;
-}
-
-.single-day-poster .day-title {
-    font-size: 2.2rem;
-    border-bottom: none;
-    margin-bottom: 30px;
-    color: #c0392b;
-}
-
-.single-day-poster .event-list {
-    display: inline-block;
-    text-align: left;
-}
-
-.single-day-poster .event-list li {
-    font-size: 1.4rem;
-    margin-bottom: 20px;
-}
-
-.single-day-poster .special-note {
-    margin-left: 0;
-    text-align: center;
+  }
+  .controls {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
 }
