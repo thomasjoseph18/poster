@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>എട്ടുനോമ്പ് തിരുനാൾ | Ettu Nombu</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    
+    <style>
+        :root {
+            --primary-blue: #0b3b60;
+            --secondary-gold: #f5b041;
+            --white: #ffffff;
+            --text-dark: #2c3e50;
+        }
+
+        body {
+            font-family: 'Noto Sans Malayalam', sans-serif;
+            /* Beautiful church/stained glass background with a dark overlay */
+            background: linear-gradient(rgba(11, 59, 96, 0.85), rgba(11, 59, 96, 0.9)), 
+                        url('https://images.unsplash.com/photo-1548625361-ec85718cb621?q=80&w=2000&auto=format&fit=crop') no-repeat center center fixed;
+            background-size: cover;
+            color: var(--text-dark);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Top Controls Area - Excluded from download */
+        .controls-wrapper {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+            width: 100%;
+            max-width: 800px;
+            box-sizing: border-box;
+            text-align: center;
+            z-index: 10;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        button, select {
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-family: 'Noto Sans Malayalam', sans-serif;
+            font-weight: 600;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary { background-color: var(--primary-blue); color: var(--white); }
+        .btn-primary:hover { background-color: #082a45; transform: translateY(-2px); }
+        
+        .btn-secondary { background-color: var(--secondary-gold); color: var(--text-dark); }
+        .btn-secondary:hover { background-color: #d49536; transform: translateY(-2px); }
+
+        .btn-download {
+            background-color: #27ae60;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-download:hover { background-color: #219653; transform: translateY(-2px); }
+
+        select {
+            border: 2px solid var(--primary-blue);
+            background-color: var(--white);
+            color: var(--primary-blue);
+            display: none;
+        }
+
+        /* Poster Container - The part that gets downloaded */
+        #poster-container {
+            width: 100%;
+            max-width: 800px;
+            background-color: #fffdf9;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            overflow: hidden;
+            border: 8px solid var(--secondary-gold);
+            position: relative;
+        }
+
+        /* Fade-in Animation */
+        .fade-in {
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Poster Header */
+        .poster-header {
+            text-align: center;
+            padding: 30px 20px 20px;
+            background: linear-gradient(to bottom, #fffdf9, #f4ead5);
+            border-bottom: 2px solid var(--secondary-gold);
+        }
+
+        .poster-header h1 {
+            color: var(--primary-blue);
+            font-size: 2.8rem;
+            margin: 0 0 10px 0;
+            text-shadow: 1px 1px 0px rgba(255,255,255,1);
+        }
+
+        .poster-header h3 {
+            color: #c0392b;
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .poster-content {
+            padding: 30px;
+            background: url('https://www.transparenttextures.com/patterns/cream-paper.png'); /* Subtle paper texture */
+        }
+
+        .day-card {
+            background-color: var(--white);
+            border-left: 6px solid var(--primary-blue);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 0 10px 10px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+            transition: transform 0.3s ease;
+        }
+
+        .day-card:hover {
+            transform: translateX(5px);
+        }
+
+        .day-title {
+            color: var(--primary-blue);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            border-bottom: 2px dashed #e0e0e0;
+            padding-bottom: 10px;
+        }
+
+        .event-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .event-list li {
+            margin-bottom: 10px;
+            font-size: 1.15rem;
+            line-height: 1.6;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .special-note {
+            color: #c0392b;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: block;
+            margin-top: 5px;
+            margin-left: 25px;
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: var(--primary-blue);
+            color: var(--secondary-gold);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* Specific Day Poster Style */
+        .single-day-poster .day-card {
+            border: 3px solid var(--primary-blue);
+            border-radius: 12px;
+            padding: 40px 30px;
+            text-align: center;
+            background-color: #fff;
+        }
+
+        .single-day-poster .day-title {
+            font-size: 2.2rem;
+            border-bottom: none;
+            margin-bottom: 30px;
+            color: #c0392b;
+        }
+        
+        .single-day-poster .event-list {
+            display: inline-block;
+            text-align: left;
+        }
+
+        .single-day-poster .event-list li {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+        }
+        
+        .single-day-poster .special-note {
+            margin-left: 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="controls-wrapper">
+        <h2 style="margin-top: 0; color: var(--primary-blue); font-size: 1.2rem;">കൺട്രോൾ പാനൽ</h2>
+        <div class="controls">
+            <button class="btn-primary" onclick="showOverallPoster()">മുഴുവൻ സമയക്രമം</button>
+            <button class="btn-secondary" onclick="showSingleDaySelector()">ഓരോ ദിവസത്തെയും</button>
+            <select id="daySelector" onchange="renderSingleDay()"></select>
+            <button class="btn-download" onclick="downloadPoster()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                പോസ്റ്റർ ഡൗൺലോഡ് ചെയ്യുക
+            </button>
+        </div>
+    </div>
+
+    <div id="poster-container" class="fade-in">
+        <div class="poster-header">
+            <h1>എട്ടുനോമ്പ് തിരുനാൾ</h1>
+            <h3>ആഗസ്റ്റ് 31 മുതൽ സെപ്റ്റംബർ 8 വരെ</h3>
+        </div>
+        
+        <div id="poster-dynamic-content">
+            </div>
+        
+        <div class="footer-note">
+            എല്ലാവരെയും എട്ടുനോമ്പ് തിരുനാൾ തിരുക്കർമ്മങ്ങളിൽ ഭക്തിപൂർവ്വം പങ്കുചേരുവാൻ സ്നേഹപൂർവ്വം ക്ഷണിക്കുന്നു.
+        </div>
+    </div>
+
+    <script>
+        const scheduleData = [
+            {
+                date: "ആഗസ്റ്റ് 31 | തിങ്കൾ",
+                events: [
+                    "🕔 5:00 pm – കൊടിയേറ്റ്, മദ്ധ്യസ്ഥ പ്രാർത്ഥന",
+                    "🕠 5:30 pm – വി. കുർബാന – മരിയൻ പ്രഘോഷണം",
+                    "🕡 6:30 pm – ജപമാല പ്രദക്ഷിണം (പള്ളിക്ക് ചുറ്റും), നേർച്ച"
+                ]
+            },
+            {
+                date: "സെപ്റ്റംബർ 1 | ചൊവ്വ",
+                events: [
+                    "🕔 5:00 pm – ദിവ്യകാരുണ്യ ആരാധന",
+                    "🕠 5:15 pm – മദ്ധ്യസ്ഥ പ്രാർത്ഥന",
+                    "🕠 5:30 pm – വി. കുർബാന – മരിയൻ പ്രഘോഷണം",
+                    "🕡 6:30 pm – ജപമാല പ്രദക്ഷിണം, നേർച്ച"
+                ]
+            },
+            {
+                date: "സെപ്റ്റംബർ 2 മുതൽ 5 വരെ (ബുധൻ - ശനി)",
+                events: [
+                    "🕔 5:00 pm – ദിവ്യകാരുണ്യ ആരാധന",
+                    "🕠 5:15 pm – മദ്ധ്യസ്ഥ പ്രാർത്ഥന",
+                    "🕠 5:30 pm – വി. കുർബാന – മരിയൻ പ്രഘോഷണം",
+                    "🕡 6:30 pm – ജപമാല പ്രദക്ഷിണം, നേർച്ച",
+                    "<span class='special-note'>(സെപ്റ്റംബർ 1-ലെ ഇതേ ക്രമത്തിൽ തിരുക്കർമ്മങ്ങൾ നടത്തപ്പെടുന്നതാണ്)</span>"
+                ]
+            },
+            {
+                date: "സെപ്റ്റംബർ 6 | ഞായർ",
+                events: [
+                    "🕢 7:15 am – വി. കുർബാന, സൺഡേ സ്കൂൾ",
+                    "🕔 5:00 pm – ദിവ്യകാരുണ്യ ആരാധന",
+                    "🕠 5:30 pm – മദ്ധ്യസ്ഥ പ്രാർത്ഥന, ജപമാല പ്രദക്ഷിണം, നേർച്ച"
+                ]
+            },
+            {
+                date: "സെപ്റ്റംബർ 7 | തിങ്കൾ",
+                events: [
+                    "🕔 5:00 pm – ജപമാല പ്രദക്ഷിണം",
+                    "🕠 5:30 pm – മദ്ധ്യസ്ഥ പ്രാർത്ഥന, വി. കുർബാന",
+                    "<span class='special-note'>(മുഖ്യകാർമ്മികൻ: കർദ്ദിനാൾ മാർ ജോർജ്ജ് ആലഞ്ചേരി)</span>",
+                    "ദിവ്യകാരുണ്യ ആരാധന, നേർച്ച"
+                ]
+            },
+            {
+                date: "സെപ്റ്റംബർ 8 | ചൊവ്വ (തിരുനാൾ ദിനം)",
+                events: [
+                    "🕔 5:00 pm – ദിവ്യകാരുണ്യ ആരാധന",
+                    "🕠 5:15 pm – മദ്ധ്യസ്ഥ പ്രാർത്ഥന",
+                    "🕠 5:30 pm – വി. കുർബാന",
+                    "തുടർന്ന് ജപമാല പ്രദക്ഷിണം",
+                    "<span class='special-note'>(പള്ളിയിൽ നിന്ന് St. Mary School-ലേക്ക്, തുടർന്ന് തിരികെ പള്ളിയിലേക്ക്)</span>",
+                    "നേർച്ച – കൊടിയിറക്ക്"
+                ]
+            }
+        ];
+
+        const contentContainer = document.getElementById('poster-dynamic-content');
+        const mainContainer = document.getElementById('poster-container');
+        const daySelector = document.getElementById('daySelector');
+
+        // Function to trigger CSS animation
+        function triggerAnimation() {
+            mainContainer.classList.remove('fade-in');
+            void mainContainer.offsetWidth; // Trigger reflow
+            mainContainer.classList.add('fade-in');
+        }
+
+        function initDropdown() {
+            scheduleData.forEach((day, index) => {
+                let option = document.createElement('option');
+                option.value = index;
+                option.text = day.date.replace(" (തിരുനാൾ ദിനം)", ""); 
+                daySelector.appendChild(option);
+            });
+        }
+
+        function createDayHTML(day) {
+            let eventsHTML = day.events.map(event => `<li>${event}</li>`).join('');
+            return `
+                <div class="day-card">
+                    <div class="day-title">${day.date}</div>
+                    <ul class="event-list">
+                        ${eventsHTML}
+                    </ul>
+                </div>
+            `;
+        }
+
+        function showOverallPoster() {
+            daySelector.style.display = 'none';
+            let htmlContent = '<div class="poster-content">';
+            scheduleData.forEach(day => {
+                htmlContent += createDayHTML(day);
+            });
+            htmlContent += '</div>';
+            
+            contentContainer.innerHTML = htmlContent;
+            triggerAnimation();
+        }
+
+        function showSingleDaySelector() {
+            daySelector.style.display = 'inline-block';
+            renderSingleDay();
+        }
+
+        function renderSingleDay() {
+            const selectedIndex = daySelector.value;
+            const day = scheduleData[selectedIndex];
+            
+            let htmlContent = '<div class="poster-content single-day-poster">';
+            htmlContent += createDayHTML(day);
+            htmlContent += '</div>';
+            
+            contentContainer.innerHTML = htmlContent;
+            triggerAnimation();
+        }
+
+        // Feature: Download as Image using html2canvas
+        function downloadPoster() {
+            const posterElement = document.getElementById('poster-container');
+            const originalTransform = posterElement.style.transform;
+            
+            // Brief styling reset to ensure high quality render
+            posterElement.style.transform = 'none';
+            
+            html2canvas(posterElement, {
+                scale: 2, // Higher resolution
+                useCORS: true,
+                backgroundColor: null
+            }).then(canvas => {
+                posterElement.style.transform = originalTransform;
+                
+                // Create image and trigger download
+                const image = canvas.toDataURL("image/png");
+                const link = document.createElement('a');
+                
+                // Set appropriate filename based on current view
+                let fileName = 'Ettu_Nombu_Overall_Schedule.png';
+                if (daySelector.style.display !== 'none') {
+                    const dayName = scheduleData[daySelector.value].date.split('|')[0].trim();
+                    fileName = `Ettu_Nombu_${dayName}.png`;
+                }
+                
+                link.download = fileName;
+                link.href = image;
+                link.click();
+            });
+        }
+
+        initDropdown();
+        showOverallPoster();
+
+    </script>
+</body>
+</html>
