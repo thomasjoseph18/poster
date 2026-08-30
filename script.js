@@ -1,132 +1,821 @@
+/* =========================================================
+   ETTU NOMBU THIRUNAL 2026
+   CHURCH POSTER SYSTEM
+   ========================================================= */
+
+
+/* =========================================================
+   SCHEDULE DATA
+   ========================================================= */
+
 const scheduleData = [
-  { date: "ആഗസ്റ്റ് 31 | തിങ്കൾ", events: ["🕔 5:00 pm – കൊടിയേറ്റ്, മദ്ധ്യസ്ഥ പ്രാർത്ഥന", "🕠 5:30 pm – വി. കുർബാന – മരിയൻ പ്രഘോഷണം", "🕡 6:30 pm – ജപമാല പ്രദക്ഷിണം (പള്ളിക്ക് ചുറ്റും), നേർച്ച"] },
-  { date: "സെപ്റ്റംബർ 1 | ചൊവ്വ", events: ["🕔 5:00 pm – ദിവ്യകാരുണ്യ ആരാധന", "🕠 5:15 pm – മദ്ധ്യസ്ഥ പ്രാർത്ഥന", "🕠 5:30 pm – വി. കുർബാന – മരിയൻ പ്രഘോഷണം", "🕡 6:30 pm – ജപമാല പ്രദക്ഷിണം, നേർച്ച"] },
-  { date: "സെപ്റ്റംബർ 2 | ബുധൻ", events: ["🕔 5:00 pm – ദിവ്യകാരുണ്യ ആരാധന", "🕠 5:15 pm – മദ്ധ്യസ്ഥ പ്രാർത്ഥന", "🕠 5:30 pm – വി. കുർബാന – മരിയൻ പ്രഘോഷണം", "🕡 6:30 pm – ജപമാല പ്രദക്ഷിണം, നേർച്ച"] },
-  { date: "സെപ്റ്റംബർ 3 | വ്യാഴം", events: ["🕔 5:00 pm – ദിവ്യകാരുണ്യ ആരാധന", "🕠 5:15 pm – മദ്ധ്യസ്ഥ പ്രാർത്ഥന", "🕠 5:30 pm – വി. കുർബാന – മരിയൻ പ്രഘോഷണം", "🕡 6:30 pm – ജപമാല പ്രദക്ഷിണം, നേർച്ച"] },
-  { date: "സെപ്റ്റംബർ 4 | വെള്ളി", events: ["🕔 5:00 pm – ദിവ്യകാരുണ്യ ആരാധന", "🕠 5:15 pm – മദ്ധ്യസ്ഥ പ്രാർത്ഥന", "🕠 5:30 pm – വി. കുർബാന – മരിയൻ പ്രഘോഷണം", "🕡 6:30 pm – ജപമാല പ്രദക്ഷിണം, നേർച്ച"] },
-  { date: "സെപ്റ്റംബർ 5 | ശനി", events: ["🕔 5:00 pm – ദിവ്യകാരുണ്യ ആരാധന", "🕠 5:15 pm – മദ്ധ്യസ്ഥ പ്രാർത്ഥന", "🕠 5:30 pm – വി. കുർബാന – മരിയൻ പ്രഘോഷണം", "🕡 6:30 pm – ജപമാല പ്രദക്ഷിണം, നേർച്ച"] },
-  { date: "സെപ്റ്റംബർ 6 | ഞായർ", events: ["🕢 7:15 am – വി. കുർബാന, സൺഡേ സ്കൂൾ", "🕔 5:00 pm – ദിവ്യകാരുണ്യ ആരാധന", "🕠 5:30 pm – മദ്ധ്യസ്ഥ പ്രാർത്ഥന, ജപമാല പ്രദക്ഷിണം, നേർച്ച"] },
-  { date: "സെപ്റ്റംബർ 7 | തിങ്കൾ", events: ["🕔 5:00 pm – ജപമാല പ്രദക്ഷിണം", "🕠 5:30 pm – മദ്ധ്യസ്ഥ പ്രാർത്ഥന, വി. കുർബാന", "<span style='color:#c0392b; font-weight:bold;'>മുഖ്യകാർമ്മികൻ: കർദ്ദിനാൾ മാർ ജോർജ്ജ് ആലഞ്ചേരി</span>", "ദിവ്യകാരുണ്യ ആരാധന, നേർച്ച"] },
-  { date: "സെപ്റ്റംബർ 8 | ചൊവ്വ (തിരുനാൾ ദിനം)", events: ["🕔 5:00 pm – ദിവ്യകാരുണ്യ ആരാധന", "🕠 5:15 pm – മദ്ധ്യസ്ഥ പ്രാർത്ഥന", "🕠 5:30 pm – വി. കുർബാന", "ജപമാല പ്രദക്ഷിണം, നേർച്ച – കൊടിയിറക്ക്"] }
+
+    {
+        date: "ആഗസ്റ്റ് 31",
+        day: "തിങ്കൾ",
+        image: "images.jpg",
+
+        events: [
+            {
+                time: "5:00 pm",
+                text: "കൊടിയേറ്റ്, മദ്ധ്യസ്ഥ പ്രാർത്ഥന"
+            },
+            {
+                time: "5:30 pm",
+                text: "വി. കുർബാന – മരിയൻ പ്രഘോഷണം"
+            },
+            {
+                time: "6:30 pm",
+                text: "ജപമാല പ്രദക്ഷിണം (പള്ളിക്ക് ചുറ്റും), നേർച്ച",
+                procession: true
+            }
+        ]
+    },
+
+
+    {
+        date: "സെപ്റ്റംബർ 1",
+        day: "ചൊവ്വ",
+        image: "images (1).jpg",
+
+        events: [
+            {
+                time: "5:00 pm",
+                text: "ദിവ്യകാരുണ്യ ആരാധന"
+            },
+            {
+                time: "5:15 pm",
+                text: "മദ്ധ്യസ്ഥ പ്രാർത്ഥന"
+            },
+            {
+                time: "5:30 pm",
+                text: "വി. കുർബാന – മരിയൻ പ്രഘോഷണം"
+            },
+            {
+                time: "6:30 pm",
+                text: "ജപമാല പ്രദക്ഷിണം, നേർച്ച",
+                procession: true
+            }
+        ]
+    },
+
+
+    {
+        date: "സെപ്റ്റംബർ 2",
+        day: "ബുധൻ",
+        image: "images (2).jpg",
+
+        events: [
+            {
+                time: "5:00 pm",
+                text: "ദിവ്യകാരുണ്യ ആരാധന"
+            },
+            {
+                time: "5:15 pm",
+                text: "മദ്ധ്യസ്ഥ പ്രാർത്ഥന"
+            },
+            {
+                time: "5:30 pm",
+                text: "വി. കുർബാന – മരിയൻ പ്രഘോഷണം"
+            },
+            {
+                time: "6:30 pm",
+                text: "ജപമാല പ്രദക്ഷിണം, നേർച്ച",
+                procession: true
+            }
+        ]
+    },
+
+
+    {
+        date: "സെപ്റ്റംബർ 3",
+        day: "വ്യാഴം",
+        image: "images (3).jpg",
+
+        events: [
+            {
+                time: "5:00 pm",
+                text: "ദിവ്യകാരുണ്യ ആരാധന"
+            },
+            {
+                time: "5:15 pm",
+                text: "മദ്ധ്യസ്ഥ പ്രാർത്ഥന"
+            },
+            {
+                time: "5:30 pm",
+                text: "വി. കുർബാന – മരിയൻ പ്രഘോഷണം"
+            },
+            {
+                time: "6:30 pm",
+                text: "ജപമാല പ്രദക്ഷിണം, നേർച്ച",
+                procession: true
+            }
+        ]
+    },
+
+
+    {
+        date: "സെപ്റ്റംബർ 4",
+        day: "വെള്ളി",
+        image: "images (4).jpg",
+
+        events: [
+            {
+                time: "5:00 pm",
+                text: "ദിവ്യകാരുണ്യ ആരാധന"
+            },
+            {
+                time: "5:15 pm",
+                text: "മദ്ധ്യസ്ഥ പ്രാർത്ഥന"
+            },
+            {
+                time: "5:30 pm",
+                text: "വി. കുർബാന – മരിയൻ പ്രഘോഷണം"
+            },
+            {
+                time: "6:30 pm",
+                text: "ജപമാല പ്രദക്ഷിണം, നേർച്ച",
+                procession: true
+            }
+        ]
+    },
+
+
+    {
+        date: "സെപ്റ്റംബർ 5",
+        day: "ശനി",
+        image: "images (5).jpg",
+
+        events: [
+            {
+                time: "5:00 pm",
+                text: "ദിവ്യകാരുണ്യ ആരാധന"
+            },
+            {
+                time: "5:15 pm",
+                text: "മദ്ധ്യസ്ഥ പ്രാർത്ഥന"
+            },
+            {
+                time: "5:30 pm",
+                text: "വി. കുർബാന – മരിയൻ പ്രഘോഷണം"
+            },
+            {
+                time: "6:30 pm",
+                text: "ജപമാല പ്രദക്ഷിണം, നേർച്ച",
+                procession: true
+            }
+        ]
+    },
+
+
+    {
+        date: "സെപ്റ്റംബർ 6",
+        day: "ഞായർ",
+        image: "images (6).jpg",
+
+        events: [
+            {
+                time: "7:15 am",
+                text: "വി. കുർബാന, സൺഡേ സ്കൂൾ"
+            },
+            {
+                time: "5:00 pm",
+                text: "ദിവ്യകാരുണ്യ ആരാധന"
+            },
+            {
+                time: "5:30 pm",
+                text: "മദ്ധ്യസ്ഥ പ്രാർത്ഥന, ജപമാല പ്രദക്ഷിണം, നേർച്ച",
+                procession: true
+            }
+        ]
+    },
+
+
+    {
+        date: "സെപ്റ്റംബർ 7",
+        day: "തിങ്കൾ",
+        image: "images (7).jpg",
+
+        special: true,
+
+        events: [
+            {
+                time: "5:00 pm",
+                text: "ജപമാല പ്രദക്ഷിണം",
+                procession: true
+            },
+            {
+                time: "5:30 pm",
+                text: "മദ്ധ്യസ്ഥ പ്രാർത്ഥന, വി. കുർബാന"
+            }
+        ],
+
+        specialText:
+            "മുഖ്യകാർമ്മികൻ: കർദ്ദിനാൾ മാർ ജോർജ്ജ് ആലഞ്ചേരി",
+
+        additionalEvents: [
+            "ദിവ്യകാരുണ്യ ആരാധന",
+            "നേർച്ച"
+        ]
+    },
+
+
+    {
+        date: "സെപ്റ്റംബർ 8",
+        day: "ചൊവ്വ",
+        image: "images (8).jpg",
+
+        feast: true,
+
+        events: [
+            {
+                time: "5:00 pm",
+                text: "ദിവ്യകാരുണ്യ ആരാധന"
+            },
+            {
+                time: "5:15 pm",
+                text: "മദ്ധ്യസ്ഥ പ്രാർത്ഥന"
+            },
+            {
+                time: "5:30 pm",
+                text: "വി. കുർബാന"
+            }
+        ],
+
+        processionText:
+            "തുടർന്ന് ജപമാല പ്രദക്ഷിണം – പള്ളിയിൽ നിന്ന് St. Mary School-ലേക്ക്, തുടർന്ന് തിരികെ പള്ളിയിലേക്ക്",
+
+        additionalEvents: [
+            "നേർച്ച",
+            "കൊടിയിറക്ക്"
+        ]
+    }
+
 ];
 
-// നിങ്ങളുടെ GitHub-ൽ അപ്‌ലോഡ് ചെയ്ത ചിത്രങ്ങളുടെ ലിസ്റ്റ്
-const imageUrls = [
-  "images.jpg",       
-  "images (1).jpg",   
-  "images (2).jpg",   
-  "images (3).jpg",   
-  "images (4).jpg",   
-  "images (5).jpg",   
-  "images (6).jpg",   
-  "images (7).jpg",   
-  "images.jpg"        
-];
 
-document.addEventListener("DOMContentLoaded", () => {
-  const overallView = document.getElementById('overallView');
-  const dailyView = document.getElementById('dailyView');
-  const dailyImage = document.getElementById('dailyImage');
-  const focusDate = document.getElementById('focusDate');
-  const focusEventsList = document.querySelector('#focusEvents ul');
-  const dateSelector = document.getElementById('dateSelector');
-  const showOverallBtn = document.getElementById('showOverall');
-  const showDailyBtn = document.getElementById('showDaily');
-  const downloadBtn = document.getElementById('downloadBtn');
+/* =========================================================
+   ELEMENTS
+   ========================================================= */
 
-  function populateOverallSchedule() {
-      overallView.innerHTML = '';
-      scheduleData.forEach((day, index) => {
-          const card = document.createElement('div');
-          card.className = 'schedule-card';
-          card.innerHTML = `
-              <div class="card-header-date">${day.date}</div>
-              <div class="card-events">
-                  <ul>${day.events.map(event => `<li>${event}</li>`).join('')}</ul>
-              </div>
-          `;
-          card.addEventListener('click', () => {
-              updateDailyFocus(index);
-              switchToDailyView();
-              dateSelector.value = index; 
-          });
-          overallView.appendChild(card);
-      });
-  }
+const overallView =
+    document.getElementById("overallView");
 
-  function populateDateSelector() {
-      scheduleData.forEach((day, index) => {
-          const option = document.createElement('option');
-          option.value = index;
-          option.textContent = day.date;
-          dateSelector.appendChild(option);
-      });
-  }
+const dailyView =
+    document.getElementById("dailyView");
 
-  function updateDailyFocus(index) {
-      dailyImage.style.opacity = 0; 
-      setTimeout(() => {
-          dailyImage.src = imageUrls[index];
-          // ചിത്രം ലഭ്യമല്ലെങ്കിൽ പകരം കാണിക്കാൻ
-          dailyImage.onerror = function() {
-              this.src = 'images.jpg';
-          };
-          dailyImage.style.opacity = 1; 
-      }, 300);
+const dailyImage =
+    document.getElementById("dailyImage");
 
-      focusDate.innerHTML = scheduleData[index].date;
-      focusEventsList.innerHTML = scheduleData[index].events.map(event => `<li>${event}</li>`).join('');
-  }
+const focusDate =
+    document.getElementById("focusDate");
 
-  function switchToOverallView() {
-      overallView.style.display = 'flex';
-      dailyView.style.display = 'none';
-      showOverallBtn.classList.add('active');
-      showDailyBtn.classList.remove('active');
-  }
+const focusEvents =
+    document.getElementById("focusEvents");
 
-  function switchToDailyView() {
-      overallView.style.display = 'none';
-      dailyView.style.display = 'flex';
-      showOverallBtn.classList.remove('active');
-      showDailyBtn.classList.add('active');
-  }
+const dateSelector =
+    document.getElementById("dateSelector");
 
-  // Download functionality
-  downloadBtn.addEventListener('click', () => {
-      const posterElement = document.getElementById('poster-content');
-      
-      html2canvas(posterElement, {
-          scale: 2, 
-          useCORS: true, 
-          backgroundColor: '#4a3b31'
-      }).then(canvas => {
-          const image = canvas.toDataURL("image/png");
-          const link = document.createElement('a');
-          
-          let fileName = 'Ettu_Nombu_Schedule.png';
-          if (dailyView.style.display === 'flex') {
-              const dayName = scheduleData[dateSelector.value || 0].date.split('|')[0].trim();
-              fileName = `Ettu_Nombu_${dayName}.png`;
-          }
-          
-          link.download = fileName;
-          link.href = image;
-          link.click();
-      });
-  });
+const showOverall =
+    document.getElementById("showOverall");
 
-  // Initial Setup
-  populateOverallSchedule();
-  populateDateSelector();
-  updateDailyFocus(0); 
-  switchToOverallView(); 
+const showDaily =
+    document.getElementById("showDaily");
 
-  // Event Listeners
-  showOverallBtn.addEventListener('click', switchToOverallView);
-  showDailyBtn.addEventListener('click', switchToDailyView);
-  dateSelector.addEventListener('change', (e) => {
-      updateDailyFocus(e.target.value);
-      switchToDailyView();
-  });
-});
+const downloadBtn =
+    document.getElementById("downloadBtn");
+
+const toast =
+    document.getElementById("toast");
+
+
+/* =========================================================
+   TOAST
+   ========================================================= */
+
+function showToast(message) {
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    setTimeout(() => {
+
+        toast.classList.remove("show");
+
+    }, 2500);
+}
+
+
+/* =========================================================
+   FORMAT DATE
+   ========================================================= */
+
+function formatDate(day) {
+
+    return `
+        ${day.date}
+        <span style="color:#8d7b66;font-size:14px;">
+            | ${day.day}
+        </span>
+    `;
+}
+
+
+/* =========================================================
+   CREATE EVENT HTML
+   ========================================================= */
+
+function createEventHTML(event) {
+
+    let extraClass = "";
+
+    if (event.procession) {
+        extraClass = "event-procession";
+    }
+
+    return `
+        <div class="event-item ${extraClass}">
+
+            <div class="event-time">
+                ${event.time}
+            </div>
+
+            <div class="event-text">
+                ${event.text}
+            </div>
+
+        </div>
+    `;
+}
+
+
+/* =========================================================
+   OVERALL VIEW
+   ========================================================= */
+
+function populateOverall() {
+
+    overallView.innerHTML = "";
+
+    scheduleData.forEach((day, index) => {
+
+        const card =
+            document.createElement("article");
+
+        let classes =
+            "schedule-card";
+
+        if (day.special) {
+            classes += " special-day";
+        }
+
+        if (day.feast) {
+            classes += " feast-day";
+        }
+
+        card.className = classes;
+
+        card.style.animationDelay =
+            `${index * 0.05}s`;
+
+
+        let html = `
+
+            <div class="card-top"></div>
+
+            <div class="card-number">
+                ${index + 1}
+            </div>
+
+            <div class="card-header">
+
+        `;
+
+
+        if (day.feast) {
+
+            html += `
+                <div class="feast-label">
+                    തിരുനാൾ ദിനം
+                </div>
+            `;
+        }
+
+
+        html += `
+
+                <div class="card-date">
+                    ${formatDate(day)}
+                </div>
+
+            </div>
+
+            <div class="card-events">
+
+        `;
+
+
+        day.events.forEach(event => {
+
+            html += createEventHTML(event);
+
+        });
+
+
+        if (day.specialText) {
+
+            html += `
+                <div class="event-special">
+                    ${day.specialText}
+                </div>
+            `;
+
+        }
+
+
+        if (day.additionalEvents) {
+
+            day.additionalEvents.forEach(event => {
+
+                html += `
+                    <div class="event-item">
+                        <div class="event-time">
+                            •
+                        </div>
+
+                        <div class="event-text">
+                            ${event}
+                        </div>
+                    </div>
+                `;
+
+            });
+
+        }
+
+
+        if (day.processionText) {
+
+            html += `
+                <div class="event-special">
+                    ${day.processionText}
+                </div>
+            `;
+
+        }
+
+
+        html += `
+            </div>
+        `;
+
+
+        card.innerHTML = html;
+
+
+        card.addEventListener("click", () => {
+
+            dateSelector.value = index;
+
+            updateDaily(index);
+
+            switchToDaily();
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        });
+
+
+        overallView.appendChild(card);
+
+    });
+
+}
+
+
+/* =========================================================
+   DATE SELECTOR
+   ========================================================= */
+
+function populateDateSelector() {
+
+    scheduleData.forEach((day, index) => {
+
+        const option =
+            document.createElement("option");
+
+        option.value = index;
+
+        option.textContent =
+            `${day.date} | ${day.day}`;
+
+        dateSelector.appendChild(option);
+
+    });
+
+}
+
+
+/* =========================================================
+   DAILY VIEW
+   ========================================================= */
+
+function updateDaily(index) {
+
+    const day =
+        scheduleData[index];
+
+    if (!day) return;
+
+
+    dailyImage.style.opacity = "0";
+
+
+    setTimeout(() => {
+
+        dailyImage.src =
+            day.image;
+
+        dailyImage.onload = () => {
+
+            dailyImage.style.opacity = "1";
+
+        };
+
+        dailyImage.onerror = () => {
+
+            dailyImage.src =
+                "images.jpg";
+
+            dailyImage.style.opacity =
+                "1";
+
+        };
+
+    }, 150);
+
+
+    focusDate.innerHTML =
+        formatDate(day);
+
+
+    let html = `
+        <div class="daily-events">
+    `;
+
+
+    day.events.forEach(event => {
+
+        html += `
+            <div class="daily-event">
+
+                <div class="daily-event-time">
+                    ${event.time}
+                </div>
+
+                <div class="daily-event-text">
+                    ${event.text}
+                </div>
+
+            </div>
+        `;
+
+    });
+
+
+    if (day.specialText) {
+
+        html += `
+            <div class="daily-special">
+                ${day.specialText}
+            </div>
+        `;
+
+    }
+
+
+    if (day.processionText) {
+
+        html += `
+            <div class="daily-special">
+                ${day.processionText}
+            </div>
+        `;
+
+    }
+
+
+    if (day.additionalEvents) {
+
+        day.additionalEvents.forEach(event => {
+
+            html += `
+                <div class="daily-event">
+
+                    <div class="daily-event-time">
+                        •
+                    </div>
+
+                    <div class="daily-event-text">
+                        ${event}
+                    </div>
+
+                </div>
+            `;
+
+        });
+
+    }
+
+
+    html += `
+        </div>
+    `;
+
+
+    focusEvents.innerHTML =
+        html;
+
+}
+
+
+/* =========================================================
+   SWITCH TO OVERALL
+   ========================================================= */
+
+function switchToOverall() {
+
+    overallView.hidden = false;
+
+    dailyView.hidden = true;
+
+    showOverall.classList.add("active");
+
+    showDaily.classList.remove("active");
+
+}
+
+
+/* =========================================================
+   SWITCH TO DAILY
+   ========================================================= */
+
+function switchToDaily() {
+
+    overallView.hidden = true;
+
+    dailyView.hidden = false;
+
+    showOverall.classList.remove("active");
+
+    showDaily.classList.add("active");
+
+}
+
+
+/* =========================================================
+   DOWNLOAD POSTER
+   ========================================================= */
+
+async function downloadPoster() {
+
+    const target =
+        document.getElementById("poster-content");
+
+
+    showToast(
+        "പോസ്റ്റർ തയ്യാറാക്കുന്നു..."
+    );
+
+
+    try {
+
+        const canvas =
+            await html2canvas(target, {
+
+                scale: 2,
+
+                useCORS: true,
+
+                backgroundColor:
+                    "#faf7f0",
+
+                logging: false
+
+            });
+
+
+        const link =
+            document.createElement("a");
+
+
+        let filename =
+            "Ettu-Nombu-Thirunal-2026.png";
+
+
+        if (!dailyView.hidden) {
+
+            const index =
+                Number(dateSelector.value || 0);
+
+            filename =
+                `Ettu-Nombu-${index + 1}-2026.png`;
+
+        }
+
+
+        link.download =
+            filename;
+
+        link.href =
+            canvas.toDataURL("image/png");
+
+        link.click();
+
+
+        showToast(
+            "പോസ്റ്റർ ഡൗൺലോഡ് ചെയ്തു"
+        );
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        showToast(
+            "പോസ്റ്റർ തയ്യാറാക്കുന്നതിൽ പിശക് സംഭവിച്ചു"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   EVENTS
+   ========================================================= */
+
+showOverall.addEventListener(
+    "click",
+    switchToOverall
+);
+
+
+showDaily.addEventListener(
+    "click",
+    () => {
+
+        if (
+            dateSelector.value === ""
+        ) {
+
+            dateSelector.value = "0";
+
+        }
+
+        updateDaily(
+            Number(dateSelector.value)
+        );
+
+        switchToDaily();
+
+    }
+);
+
+
+dateSelector.addEventListener(
+    "change",
+    event => {
+
+        const index =
+            Number(event.target.value);
+
+        updateDaily(index);
+
+        switchToDaily();
+
+    }
+);
+
+
+downloadBtn.addEventListener(
+    "click",
+    downloadPoster
+);
+
+
+/* =========================================================
+   INITIALIZE
+   ========================================================= */
+
+populateOverall();
+
+populateDateSelector();
+
+updateDaily(0);
+
+switchToOverall();

@@ -1,54 +1,226 @@
 <!DOCTYPE html>
 <html lang="ml">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>എട്ടുനോമ്പ് തിരുനാൾ | പള്ളി തിരുനാൾ കലണ്ടർ</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;700&display=swap" rel="stylesheet">
-<!-- html2canvas for Download Feature -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>എട്ടുനോമ്പ് തിരുനാൾ 2026</title>
+
+    <meta
+        name="description"
+        content="എട്ടുനോമ്പ് തിരുനാൾ 2026 - തിരുക്കർമ്മങ്ങളുടെ സമയക്രമം"
+    >
+
+    <!-- Malayalam Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manjari:wght@400;700&family=Noto+Sans+Malayalam:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- html2canvas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<div class="main-container" id="poster-content">
-  
-  <div class="header">
-    <div class="title-area">
-      <h1>എട്ടുനോമ്പ് തിരുനാൾ</h1>
-      <div class="date-subtitle">ആഗസ്റ്റ് 31 മുതൽ സെപ്റ്റംബർ 8 വരെ</div>
-    </div>
-  </div>
+<div class="site">
 
-  <div class="controls" data-html2canvas-ignore="true">
-    <button class="btn btn-overall active" id="showOverall">മുഴുവൻ സമയക്രമം</button>
-    <button class="btn btn-daily" id="showDaily">ഓരോ ദിവസത്തെയും</button>
-    <select id="dateSelector">
-      <option value="" disabled selected>തീയതി തിരഞ്ഞെടുക്കുക</option>
-    </select>
-    <button class="btn btn-download" id="downloadBtn">പോസ്റ്റർ ഡൗൺലോഡ് ചെയ്യുക</button>
-  </div>
+    <!-- ================= HEADER ================= -->
 
-  <div class="poster-wrapper">
-    <div id="overallView">
-      <!-- Schedule cards for all days will be inserted here -->
-    </div>
-    
-    <div id="dailyView">
-      <img src="" id="dailyImage" alt="പരിശുദ്ധ അമ്മ">
-      <div id="focusDate"></div>
-      <div id="focusEvents">
-        <ul></ul>
-      </div>
-    </div>
-  </div>
+    <header class="church-header">
 
-  <div class="main-footer">
-    എല്ലാവരെയും എട്ടുനോമ്പ് തിരുനാൾ തിരുക്കർമ്മങ്ങളിൽ ഭക്തിപൂർവ്വം പങ്കുചേരുവാൻ സ്നേഹപൂർവ്വം ക്ഷണിക്കുന്നു.
-  </div>
+        <div class="cross-symbol">
+            ✝
+        </div>
+
+        <div class="header-content">
+
+            <p class="church-label">
+                പരിശുദ്ധ കന്യകാമറിയത്തിന്റെ ജനനത്തിരുനാൾ
+            </p>
+
+            <h1>
+                എട്ടുനോമ്പ് തിരുനാൾ
+            </h1>
+
+            <div class="year">
+                2026
+            </div>
+
+            <div class="date-range">
+                ആഗസ്റ്റ് 31 മുതൽ സെപ്റ്റംബർ 8 വരെ
+            </div>
+
+            <div class="header-line">
+                <span></span>
+                <i class="fa-solid fa-cross"></i>
+                <span></span>
+            </div>
+
+            <p class="schedule-label">
+                തിരുക്കർമ്മങ്ങളുടെ സമയക്രമം
+            </p>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= NAVIGATION ================= -->
+
+    <nav class="navigation" data-html2canvas-ignore="true">
+
+        <div class="nav-inner">
+
+            <button
+                class="nav-button active"
+                id="showOverall"
+            >
+                <i class="fa-solid fa-calendar-days"></i>
+                മുഴുവൻ സമയക്രമം
+            </button>
+
+            <button
+                class="nav-button"
+                id="showDaily"
+            >
+                <i class="fa-solid fa-image"></i>
+                ദിവസത്തെ പോസ്റ്റർ
+            </button>
+
+            <select id="dateSelector">
+                <option value="" selected disabled>
+                    തീയതി തിരഞ്ഞെടുക്കുക
+                </option>
+            </select>
+
+            <button
+                class="download-button"
+                id="downloadBtn"
+            >
+                <i class="fa-solid fa-download"></i>
+                പോസ്റ്റർ ഡൗൺലോഡ്
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main>
+
+        <!-- OVERALL VIEW -->
+
+        <section
+            id="overallView"
+            class="overall-view"
+        >
+
+            <!-- JS inserts all 9 days -->
+
+        </section>
+
+
+        <!-- DAILY POSTER VIEW -->
+
+        <section
+            id="dailyView"
+            class="daily-view"
+            hidden
+        >
+
+            <div class="daily-poster">
+
+                <!-- Image -->
+
+                <div class="daily-image">
+
+                    <img
+                        id="dailyImage"
+                        src="images.jpg"
+                        alt="തിരുനാൾ ചിത്രം"
+                    >
+
+                    <div class="image-overlay"></div>
+
+                    <div class="image-cross">
+                        ✝
+                    </div>
+
+                </div>
+
+
+                <!-- Content -->
+
+                <div class="daily-content">
+
+                    <p class="daily-small-title">
+                        എട്ടുനോമ്പ് തിരുനാൾ
+                    </p>
+
+                    <h2 id="focusDate"></h2>
+
+                    <div class="decorative-line">
+                        <span></span>
+                        <i class="fa-solid fa-cross"></i>
+                        <span></span>
+                    </div>
+
+                    <div id="focusEvents"></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="church-footer">
+
+        <div class="footer-cross">
+            ✝
+        </div>
+
+        <p>
+            എല്ലാവരെയും എട്ടുനോമ്പ് തിരുനാൾ തിരുക്കർമ്മങ്ങളിൽ
+            ഭക്തിപൂർവ്വം പങ്കുചേരുവാൻ സ്നേഹപൂർവ്വം ക്ഷണിക്കുന്നു.
+        </p>
+
+        <div class="footer-line"></div>
+
+        <small>
+            ദൈവാനുഗ്രഹം എല്ലാവരിലും ഉണ്ടാകട്ടെ
+        </small>
+
+    </footer>
 
 </div>
 
+
+<div
+    id="toast"
+    class="toast"
+></div>
+
+
 <script src="script.js"></script>
+
 </body>
 </html>
