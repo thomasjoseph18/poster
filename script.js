@@ -10,17 +10,17 @@ const scheduleData = [
   { date: "സെപ്റ്റംബർ 8 | ചൊവ്വ (തിരുനാൾ ദിനം)", events: ["🕔 5:00 pm – ദിവ്യകാരുണ്യ ആരാധന", "🕠 5:15 pm – മദ്ധ്യസ്ഥ പ്രാർത്ഥന", "🕠 5:30 pm – വി. കുർബാന", "ജപമാല പ്രദക്ഷിണം, നേർച്ച – കൊടിയിറക്ക്"] }
 ];
 
-// Working HD Image URLs
+// നിങ്ങൾ നൽകിയ ലോക്കൽ ചിത്രങ്ങളുടെ ലിസ്റ്റ്
 const imageUrls = [
-  "https://images.unsplash.com/photo-1583047648359-0091cb7a5d3e?w=500&q=80", // Day 1: Mary Statue
-  "https://images.unsplash.com/photo-1502446755427-4a0b22f28b4c?w=500&q=80", // Day 2: Rosary
-  "https://images.unsplash.com/photo-1603529329712-4d22be457a1d?w=500&q=80", // Day 3: Candles
-  "https://images.unsplash.com/photo-1574218683076-2e90c883a45c?w=500&q=80", // Day 4: Mary Close-up
-  "https://images.unsplash.com/photo-1548625361-ec85718cb621?w=500&q=80", // Day 5: Church Cross
-  "https://images.unsplash.com/photo-1614234551101-9989ceb8b6a3?w=500&q=80", // Day 6: Virgin Mary
-  "https://images.unsplash.com/photo-1519782522771-419b48c26f04?w=500&q=80", // Day 7: Church Interior
-  "https://images.unsplash.com/photo-1605336152002-39c8789ccb0c?w=500&q=80", // Day 8: Stained Glass
-  "https://images.unsplash.com/photo-1542385151-efd9000785a0?w=500&q=80"  // Day 9: Holy Bible
+  "photos/images.jpg",       // Day 1: ആഗസ്റ്റ് 31
+  "photos/images (1).jpg",   // Day 2: സെപ്റ്റംബർ 1
+  "photos/images (2).jpg",   // Day 3: സെപ്റ്റംബർ 2
+  "photos/images (3).jpg",   // Day 4: സെപ്റ്റംബർ 3
+  "photos/images (4).jpg",   // Day 5: സെപ്റ്റംബർ 4
+  "photos/images (5).jpg",   // Day 6: സെപ്റ്റംബർ 5
+  "photos/images (6).jpg",   // Day 7: സെപ്റ്റംബർ 6
+  "photos/images (7).jpg",   // Day 8: സെപ്റ്റംബർ 7
+  "photos/images.jpg"        // Day 9: സെപ്റ്റംബർ 8 (9-ാമത്തെ ചിത്രം ഇല്ലാത്തതിനാൽ ആദ്യ ചിത്രം വീണ്ടും ഉപയോഗിച്ചു)
 ];
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -44,7 +44,6 @@ document.addEventListener("DOMContentLoaded", () => {
                   <ul>${day.events.map(event => `<li>${event}</li>`).join('')}</ul>
               </div>
           `;
-          // When a card is clicked, show the image and daily details
           card.addEventListener('click', () => {
               updateDailyFocus(index);
               switchToDailyView();
@@ -67,9 +66,9 @@ document.addEventListener("DOMContentLoaded", () => {
       dailyImage.style.opacity = 0; 
       setTimeout(() => {
           dailyImage.src = imageUrls[index];
-          // Fallback image just in case
+          // ചിത്രം ലോഡ് ആയില്ലെങ്കിൽ ഡിഫോൾട്ട് ആയി കാണിക്കാൻ
           dailyImage.onerror = function() {
-              this.src = 'https://images.unsplash.com/photo-1583047648359-0091cb7a5d3e?w=500&q=80';
+              this.src = 'photos/images.jpg';
           };
           dailyImage.style.opacity = 1; 
       }, 300);
@@ -96,7 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
   populateOverallSchedule();
   populateDateSelector();
   updateDailyFocus(0); 
-  switchToOverallView(); // Starts with overall view (No images visible here)
+  switchToOverallView(); 
 
   // Event Listeners
   showOverallBtn.addEventListener('click', switchToOverallView);
