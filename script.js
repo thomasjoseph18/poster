@@ -10,17 +10,17 @@ const scheduleData = [
   { date: "സെപ്റ്റംബർ 8 | ചൊവ്വ (തിരുനാൾ ദിനം)", events: ["🕔 5:00 pm – ദിവ്യകാരുണ്യ ആരാധന", "🕠 5:15 pm – മദ്ധ്യസ്ഥ പ്രാർത്ഥന", "🕠 5:30 pm – വി. കുർബാന", "ജപമാല പ്രദക്ഷിണം, നേർച്ച – കൊടിയിറക്ക്"] }
 ];
 
-// നിങ്ങൾ നൽകിയ ലോക്കൽ ചിത്രങ്ങളുടെ ലിസ്റ്റ്
+// നിങ്ങളുടെ GitHub-ൽ അപ്‌ലോഡ് ചെയ്ത ചിത്രങ്ങളുടെ ലിസ്റ്റ്
 const imageUrls = [
-  "photos/images.jpg",       // Day 1: ആഗസ്റ്റ് 31
-  "photos/images (1).jpg",   // Day 2: സെപ്റ്റംബർ 1
-  "photos/images (2).jpg",   // Day 3: സെപ്റ്റംബർ 2
-  "photos/images (3).jpg",   // Day 4: സെപ്റ്റംബർ 3
-  "photos/images (4).jpg",   // Day 5: സെപ്റ്റംബർ 4
-  "photos/images (5).jpg",   // Day 6: സെപ്റ്റംബർ 5
-  "photos/images (6).jpg",   // Day 7: സെപ്റ്റംബർ 6
-  "photos/images (7).jpg",   // Day 8: സെപ്റ്റംബർ 7
-  "photos/images.jpg"        // Day 9: സെപ്റ്റംബർ 8 (9-ാമത്തെ ചിത്രം ഇല്ലാത്തതിനാൽ ആദ്യ ചിത്രം വീണ്ടും ഉപയോഗിച്ചു)
+  "images.jpg",       
+  "images (1).jpg",   
+  "images (2).jpg",   
+  "images (3).jpg",   
+  "images (4).jpg",   
+  "images (5).jpg",   
+  "images (6).jpg",   
+  "images (7).jpg",   
+  "images.jpg"        
 ];
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const dateSelector = document.getElementById('dateSelector');
   const showOverallBtn = document.getElementById('showOverall');
   const showDailyBtn = document.getElementById('showDaily');
+  const downloadBtn = document.getElementById('downloadBtn');
 
   function populateOverallSchedule() {
       overallView.innerHTML = '';
@@ -66,14 +67,14 @@ document.addEventListener("DOMContentLoaded", () => {
       dailyImage.style.opacity = 0; 
       setTimeout(() => {
           dailyImage.src = imageUrls[index];
-          // ചിത്രം ലോഡ് ആയില്ലെങ്കിൽ ഡിഫോൾട്ട് ആയി കാണിക്കാൻ
+          // ചിത്രം ലഭ്യമല്ലെങ്കിൽ പകരം കാണിക്കാൻ
           dailyImage.onerror = function() {
-              this.src = 'photos/images.jpg';
+              this.src = 'images.jpg';
           };
           dailyImage.style.opacity = 1; 
       }, 300);
 
-      focusDate.textContent = scheduleData[index].date;
+      focusDate.innerHTML = scheduleData[index].date;
       focusEventsList.innerHTML = scheduleData[index].events.map(event => `<li>${event}</li>`).join('');
   }
 
@@ -90,6 +91,30 @@ document.addEventListener("DOMContentLoaded", () => {
       showOverallBtn.classList.remove('active');
       showDailyBtn.classList.add('active');
   }
+
+  // Download functionality
+  downloadBtn.addEventListener('click', () => {
+      const posterElement = document.getElementById('poster-content');
+      
+      html2canvas(posterElement, {
+          scale: 2, 
+          useCORS: true, 
+          backgroundColor: '#4a3b31'
+      }).then(canvas => {
+          const image = canvas.toDataURL("image/png");
+          const link = document.createElement('a');
+          
+          let fileName = 'Ettu_Nombu_Schedule.png';
+          if (dailyView.style.display === 'flex') {
+              const dayName = scheduleData[dateSelector.value || 0].date.split('|')[0].trim();
+              fileName = `Ettu_Nombu_${dayName}.png`;
+          }
+          
+          link.download = fileName;
+          link.href = image;
+          link.click();
+      });
+  });
 
   // Initial Setup
   populateOverallSchedule();

@@ -5,11 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>എട്ടുനോമ്പ് തിരുനാൾ | പള്ളി തിരുനാൾ കലണ്ടർ</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;700&display=swap" rel="stylesheet">
+<!-- html2canvas for Download Feature -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="main-container">
+<div class="main-container" id="poster-content">
   
   <div class="header">
     <div class="title-area">
@@ -18,13 +20,13 @@
     </div>
   </div>
 
-  <div class="controls">
+  <div class="controls" data-html2canvas-ignore="true">
     <button class="btn btn-overall active" id="showOverall">മുഴുവൻ സമയക്രമം</button>
     <button class="btn btn-daily" id="showDaily">ഓരോ ദിവസത്തെയും</button>
     <select id="dateSelector">
       <option value="" disabled selected>തീയതി തിരഞ്ഞെടുക്കുക</option>
     </select>
-    <button class="btn btn-download">പോസ്റ്റർ ഡൗൺലോഡ് ചെയ്യുക</button>
+    <button class="btn btn-download" id="downloadBtn">പോസ്റ്റർ ഡൗൺലോഡ് ചെയ്യുക</button>
   </div>
 
   <div class="poster-wrapper">
