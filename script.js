@@ -10,16 +10,17 @@ const scheduleData = [
   { date: "സെപ്റ്റംബർ 8 | ചൊവ്വ (തിരുനാൾ ദിനം)", events: ["🕔 5:00 pm – ദിവ്യകാരുണ്യ ആരാധന", "🕠 5:15 pm – മദ്ധ്യസ്ഥ പ്രാർത്ഥന", "🕠 5:30 pm – വി. കുർബാന", "ജപമാല പ്രദക്ഷിണം, നേർച്ച – കൊടിയിറക്ക്"] }
 ];
 
+// Working HD Image URLs
 const imageUrls = [
-  "https://upload.wikimedia.org/wikipedia/commons/e/ec/Madonna_of_the_Magnificat_-_Google_Art_Project.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/7/77/Pietro_Perugino_052.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/5/5e/Raphael_-_The_Madonna_della_Seggiola_-_Google_Art_Project.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/8/8a/Madonna_dello_Steccato.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/e/e0/Gerard_David_-_Rest_on_the_Flight_into_Egypt_-_Google_Art_Project.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/e/e6/Madonna_col_Bambino_by_Gentile_da_Fabriano.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/9/9d/Sassoferrato_-_The_Virgin_in_Prayer_-_Google_Art_Project.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/c/c5/Madonna_of_the_Harpies_by_Andrea_del_Sarto.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/a/aa/Giovanni_Bellini_-_Madonna_of_the_Meadow_-_Google_Art_Project.jpg"
+  "https://images.unsplash.com/photo-1583047648359-0091cb7a5d3e?w=500&q=80", // Day 1: Mary Statue
+  "https://images.unsplash.com/photo-1502446755427-4a0b22f28b4c?w=500&q=80", // Day 2: Rosary
+  "https://images.unsplash.com/photo-1603529329712-4d22be457a1d?w=500&q=80", // Day 3: Candles
+  "https://images.unsplash.com/photo-1574218683076-2e90c883a45c?w=500&q=80", // Day 4: Mary Close-up
+  "https://images.unsplash.com/photo-1548625361-ec85718cb621?w=500&q=80", // Day 5: Church Cross
+  "https://images.unsplash.com/photo-1614234551101-9989ceb8b6a3?w=500&q=80", // Day 6: Virgin Mary
+  "https://images.unsplash.com/photo-1519782522771-419b48c26f04?w=500&q=80", // Day 7: Church Interior
+  "https://images.unsplash.com/photo-1605336152002-39c8789ccb0c?w=500&q=80", // Day 8: Stained Glass
+  "https://images.unsplash.com/photo-1542385151-efd9000785a0?w=500&q=80"  // Day 9: Holy Bible
 ];
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -43,10 +44,11 @@ document.addEventListener("DOMContentLoaded", () => {
                   <ul>${day.events.map(event => `<li>${event}</li>`).join('')}</ul>
               </div>
           `;
+          // When a card is clicked, show the image and daily details
           card.addEventListener('click', () => {
               updateDailyFocus(index);
               switchToDailyView();
-              dateSelector.value = index; // Update dropdown
+              dateSelector.value = index; 
           });
           overallView.appendChild(card);
       });
@@ -65,6 +67,10 @@ document.addEventListener("DOMContentLoaded", () => {
       dailyImage.style.opacity = 0; 
       setTimeout(() => {
           dailyImage.src = imageUrls[index];
+          // Fallback image just in case
+          dailyImage.onerror = function() {
+              this.src = 'https://images.unsplash.com/photo-1583047648359-0091cb7a5d3e?w=500&q=80';
+          };
           dailyImage.style.opacity = 1; 
       }, 300);
 
@@ -90,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
   populateOverallSchedule();
   populateDateSelector();
   updateDailyFocus(0); 
-  switchToOverallView(); // Start with overall view
+  switchToOverallView(); // Starts with overall view (No images visible here)
 
   // Event Listeners
   showOverallBtn.addEventListener('click', switchToOverallView);
