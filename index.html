@@ -1,415 +1,363 @@
 <!DOCTYPE html>
 <html lang="ml">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>എട്ടുനോമ്പ് തിരുനാൾ | Ettu Nombu</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;600;700&display=swap" rel="stylesheet">
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    
-    <style>
-        :root {
-            --primary-blue: #0b3b60;
-            --secondary-gold: #f5b041;
-            --white: #ffffff;
-            --text-dark: #2c3e50;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>എട്ടുനോമ്പ് തിരുനാൾ | പള്ളി തിരുനാൾ കലണ്ടർ</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  body {
+    font-family: 'Noto Sans Malayalam', sans-serif;
+    background: #4a3b31;
+    color: #333;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+  }
 
-        body {
-            font-family: 'Noto Sans Malayalam', sans-serif;
-            /* Beautiful church/stained glass background with a dark overlay */
-            background: linear-gradient(rgba(11, 59, 96, 0.85), rgba(11, 59, 96, 0.9)), 
-                        url('https://images.unsplash.com/photo-1548625361-ec85718cb621?q=80&w=2000&auto=format&fit=crop') no-repeat center center fixed;
-            background-size: cover;
-            color: var(--text-dark);
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
+  .main-container {
+    background: #fff;
+    border: 15px solid #d4af37;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    max-width: 1200px;
+    width: 100%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+  }
 
-        /* Top Controls Area - Excluded from download */
-        .controls-wrapper {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            margin-bottom: 30px;
-            width: 100%;
-            max-width: 800px;
-            box-sizing: border-box;
-            text-align: center;
-            z-index: 10;
-        }
+  /* Header Section */
+  .header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .title-area h1 {
+    font-size: 4em;
+    color: #1e4d7d;
+    margin: 0;
+  }
+  
+  .date-subtitle {
+    background: #a52a2a;
+    color: #fff;
+    padding: 10px 30px;
+    font-weight: bold;
+    font-size: 1.5em;
+    border-radius: 10px;
+    display: inline-block;
+    margin-top: 10px;
+  }
 
-        .controls {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-        }
+  /* Controls Section */
+  .controls {
+    display: flex;
+    justify-content: space-around;
+    background: #e0d0b8;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+  }
 
-        button, select {
-            padding: 10px 20px;
-            font-size: 1rem;
-            font-family: 'Noto Sans Malayalam', sans-serif;
-            font-weight: 600;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+  .btn {
+    padding: 10px 25px;
+    border: 3px solid transparent;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
 
-        .btn-primary { background-color: var(--primary-blue); color: var(--white); }
-        .btn-primary:hover { background-color: #082a45; transform: translateY(-2px); }
-        
-        .btn-secondary { background-color: var(--secondary-gold); color: var(--text-dark); }
-        .btn-secondary:hover { background-color: #d49536; transform: translateY(-2px); }
+  .btn-overall {
+    background: #bf9b30;
+    color: #fff;
+  }
 
-        .btn-download {
-            background-color: #27ae60;
-            color: white;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .btn-download:hover { background-color: #219653; transform: translateY(-2px); }
+  .btn-daily {
+    background: #a58e6f;
+    color: #fff;
+  }
 
-        select {
-            border: 2px solid var(--primary-blue);
-            background-color: var(--white);
-            color: var(--primary-blue);
-            display: none;
-        }
+  .btn:hover, .btn.active {
+    border-color: #7b241c;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
 
-        /* Poster Container - The part that gets downloaded */
-        #poster-container {
-            width: 100%;
-            max-width: 800px;
-            background-color: #fffdf9;
-            border-radius: 15px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-            overflow: hidden;
-            border: 8px solid var(--secondary-gold);
-            position: relative;
-        }
+  #dateSelector {
+    padding: 10px;
+    font-family: inherit;
+    border: 3px solid #bf9b30;
+    border-radius: 5px;
+  }
 
-        /* Fade-in Animation */
-        .fade-in {
-            animation: fadeIn 0.6s ease-in-out;
-        }
+  .btn-download {
+    background: #bf9b30;
+    color: #fff;
+  }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+  /* Split Layout */
+  .poster-wrapper {
+    display: flex;
+    gap: 30px;
+  }
 
-        /* Poster Header */
-        .poster-header {
-            text-align: center;
-            padding: 30px 20px 20px;
-            background: linear-gradient(to bottom, #fffdf9, #f4ead5);
-            border-bottom: 2px solid var(--secondary-gold);
-        }
+  /* Left Side: Overall Schedule */
+  #overallView {
+    flex: 2;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    background: #f7f3e8;
+    padding: 20px;
+    border-radius: 15px;
+    border: 2px solid #e0d0b8;
+  }
 
-        .poster-header h1 {
-            color: var(--primary-blue);
-            font-size: 2.8rem;
-            margin: 0 0 10px 0;
-            text-shadow: 1px 1px 0px rgba(255,255,255,1);
-        }
+  .schedule-card {
+    background: #fff;
+    width: calc(50% - 10px);
+    border: 4px solid transparent;
+    border-radius: 10px;
+    padding: 15px;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+    cursor: pointer;
+  }
 
-        .poster-header h3 {
-            color: #c0392b;
-            margin: 0;
-            font-size: 1.2rem;
-            font-weight: 700;
-        }
+  .schedule-card:hover {
+    transform: translateY(-5px);
+    border-color: #d4af37;
+  }
 
-        .poster-content {
-            padding: 30px;
-            background: url('https://www.transparenttextures.com/patterns/cream-paper.png'); /* Subtle paper texture */
-        }
+  .card-header-date {
+    background: #e0d0b8;
+    color: #1e4d7d;
+    font-weight: bold;
+    text-align: center;
+    padding: 8px;
+    border-radius: 5px;
+    font-size: 1.2em;
+  }
 
-        .day-card {
-            background-color: var(--white);
-            border-left: 6px solid var(--primary-blue);
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 0 10px 10px 0;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.06);
-            transition: transform 0.3s ease;
-        }
+  .card-events ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    font-size: 0.95em;
+    color: #555;
+  }
 
-        .day-card:hover {
-            transform: translateX(5px);
-        }
+  /* Right Side: Daily Focus */
+  #dailyView {
+    flex: 1;
+    background: #fdfaf5;
+    border: 4px solid #d4af37;
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  }
 
-        .day-title {
-            color: var(--primary-blue);
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            border-bottom: 2px dashed #e0e0e0;
-            padding-bottom: 10px;
-        }
+  #dailyImage {
+    width: 100%;
+    max-width: 300px;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    transition: opacity 0.5s ease;
+  }
 
-        .event-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
+  #focusDate {
+    font-size: 2em;
+    color: #1e4d7d;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
 
-        .event-list li {
-            margin-bottom: 10px;
-            font-size: 1.15rem;
-            line-height: 1.6;
-            display: flex;
-            align-items: flex-start;
-        }
-        
-        .special-note {
-            color: #c0392b;
-            font-weight: 600;
-            font-size: 0.95rem;
-            display: block;
-            margin-top: 5px;
-            margin-left: 25px;
-        }
+  #focusEvents {
+    width: 100%;
+    font-size: 1.1em;
+  }
 
-        .footer-note {
-            text-align: center;
-            margin-top: 20px;
-            padding: 20px;
-            background-color: var(--primary-blue);
-            color: var(--secondary-gold);
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
+  #focusEvents ul {
+    list-style-type: none;
+    padding: 0;
+  }
 
-        /* Specific Day Poster Style */
-        .single-day-poster .day-card {
-            border: 3px solid var(--primary-blue);
-            border-radius: 12px;
-            padding: 40px 30px;
-            text-align: center;
-            background-color: #fff;
-        }
+  #focusEvents li {
+    padding: 8px 0;
+    border-bottom: 1px solid #e0e0e0;
+  }
 
-        .single-day-poster .day-title {
-            font-size: 2.2rem;
-            border-bottom: none;
-            margin-bottom: 30px;
-            color: #c0392b;
-        }
-        
-        .single-day-poster .event-list {
-            display: inline-block;
-            text-align: left;
-        }
+  /* Footer Section */
+  .main-footer {
+    text-align: center;
+    font-size: 1.5em;
+    color: #7b241c;
+    font-weight: bold;
+    margin-top: 30px;
+  }
 
-        .single-day-poster .event-list li {
-            font-size: 1.4rem;
-            margin-bottom: 20px;
-        }
-        
-        .single-day-poster .special-note {
-            margin-left: 0;
-            text-align: center;
-        }
-    </style>
+  /* Responsiveness */
+  @media (max-width: 768px) {
+    .poster-wrapper {
+      flex-direction: column;
+    }
+    .schedule-card {
+      width: 100%;
+    }
+    .controls {
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+  }
+</style>
 </head>
 <body>
 
-    <div class="controls-wrapper">
-        <h2 style="margin-top: 0; color: var(--primary-blue); font-size: 1.2rem;">കൺട്രോൾ പാനൽ</h2>
-        <div class="controls">
-            <button class="btn-primary" onclick="showOverallPoster()">മുഴുവൻ സമയക്രമം</button>
-            <button class="btn-secondary" onclick="showSingleDaySelector()">ഓരോ ദിവസത്തെയും</button>
-            <select id="daySelector" onchange="renderSingleDay()"></select>
-            <button class="btn-download" onclick="downloadPoster()">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                പോസ്റ്റർ ഡൗൺലോഡ് ചെയ്യുക
-            </button>
-        </div>
+<div class="main-container">
+  
+  <div class="header">
+    <div class="title-area">
+      <h1>എട്ടുനോമ്പ് തിരുനാൾ</h1>
+      <div class="date-subtitle">ആഗസ്റ്റ് 31 മുതൽ സെപ്റ്റംബർ 8 വരെ</div>
     </div>
+  </div>
 
-    <div id="poster-container" class="fade-in">
-        <div class="poster-header">
-            <h1>എട്ടുനോമ്പ് തിരുനാൾ</h1>
-            <h3>ആഗസ്റ്റ് 31 മുതൽ സെപ്റ്റംബർ 8 വരെ</h3>
-        </div>
-        
-        <div id="poster-dynamic-content">
+  <div class="controls">
+    <button class="btn btn-overall active" id="showOverall">മുഴുവൻ സമയക്രമം</button>
+    <button class="btn btn-daily" id="showDaily">ഓരോ ദിവസത്തെയും</button>
+    <select id="dateSelector">
+      <option value="" disabled selected>തീയതി തിരഞ്ഞെടുക്കുക</option>
+    </select>
+    <button class="btn btn-download">പോസ്റ്റർ ഡൗൺലോഡ് ചെയ്യുക</button>
+  </div>
+
+  <div class="poster-wrapper">
+    <div id="overallView">
+      </div>
+    
+    <div id="dailyView">
+      <img src="" id="dailyImage" alt="പരിശുദ്ധ അമ്മ">
+      <div id="focusDate"></div>
+      <div id="focusEvents">
+        <ul></ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-footer">
+    എല്ലാവരെയും എട്ടുനോമ്പ് തിരുനാൾ തിരുക്കർമ്മങ്ങളിൽ ഭക്തിപൂർവ്വം പങ്കുചേരുവാൻ സ്നേഹപൂർവ്വം ക്ഷണിക്കുന്നു.
+  </div>
+
+</div>
+
+<script>
+// scheduleData and imageUrls arrays are populated as described in the plan.
+const scheduleData = [
+    { date: "ആഗസ്റ്റ് 31 | തിങ്കൾ", events: ["🕔 5:00 pm – കൊടിയേറ്റ്, മദ്ധ്യസ്ഥ പ്രാർത്ഥന", "🕠 5:30 pm – വി. കുർബാന – മരിയൻ പ്രഘോഷണം", "🕡 6:30 pm – ജപമാല പ്രദക്ഷിണം (പള്ളിക്ക് ചുറ്റും), നേർച്ച"] },
+    { date: "സെപ്റ്റംബർ 1 | ചൊവ്വ", events: ["🕔 5:00 pm – ദിവ്യകാരുണ്യ ആരാധന", "🕠 5:15 pm – മദ്ധ്യസ്ഥ പ്രാർത്ഥന", "🕠 5:30 pm – വി. കുർബാന – മരിയൻ പ്രഘോഷണം", "🕡 6:30 pm – ജപമാല പ്രദക്ഷിണം, നേർച്ച"] },
+    { date: "സെപ്റ്റംബർ 2 | ബുധൻ", events: ["🕔 5:00 pm – ദിവ്യകാരുണ്യ ആരാധന", "🕠 5:15 pm – മദ്ധ്യസ്ഥ പ്രാർത്ഥന", "🕠 5:30 pm – വി. കുർബാന – മരിയൻ പ്രഘോഷണം", "🕡 6:30 pm – ജപമാല പ്രദക്ഷിണം, നേർച്ച"] },
+    { date: "സെപ്റ്റംബർ 3 | വ്യാഴം", events: ["🕔 5:00 pm – ദിവ്യകാരുണ്യ ആരാധന", "🕠 5:15 pm – മദ്ധ്യസ്ഥ പ്രാർത്ഥന", "🕠 5:30 pm – വി. കുർബാന – മരിയൻ പ്രഘോഷണം", "🕡 6:30 pm – ജപമാല പ്രദക്ഷിണം, നേർച്ച"] },
+    { date: "സെപ്റ്റംബർ 4 | വെള്ളി", events: ["🕔 5:00 pm – ദിവ്യകാരുണ്യ ആരാധന", "🕠 5:15 pm – മദ്ധ്യസ്ഥ പ്രാർത്ഥന", "🕠 5:30 pm – വി. കുർബാന – മരിയൻ പ്രഘോഷണം", "🕡 6:30 pm – ജപമാല പ്രദക്ഷിണം, നേർച്ച"] },
+    { date: "സെപ്റ്റംബർ 5 | ശനി", events: ["🕔 5:00 pm – ദിവ്യകാരുണ്യ ആരാധന", "🕠 5:15 pm – മദ്ധ്യസ്ഥ പ്രാർത്ഥന", "🕠 5:30 pm – വി. കുർബാന – മരിയൻ പ്രഘോഷണം", "🕡 6:30 pm – ജപമാല പ്രദക്ഷിണം, നേർച്ച"] },
+    { date: "സെപ്റ്റംബർ 6 | ഞായർ", events: ["🕢 7:15 am – വി. കുർബാന, സൺഡേ സ്കൂൾ", "🕔 5:00 pm – ദിവ്യകാരുണ്യ ആരാധന", "🕠 5:30 pm – മദ്ധ്യസ്ഥ പ്രാർത്ഥന, ജപമാല പ്രദക്ഷിണം, നേർച്ച"] },
+    { date: "സെപ്റ്റംബർ 7 | തിങ്കൾ", events: ["🕔 5:00 pm – ജപമാല പ്രദക്ഷിണം", "🕠 5:30 pm – മദ്ധ്യസ്ഥ പ്രാർത്ഥന, വി. കുർബാന", "<span class='special'>முக്യകാർമ്മികൻ: കർദ്ദിനാൾ മാർ ജോർജ്ജ് ആലഞ്ചേരി</span>", "ദിവ്യകാരുണ്യ ആരാധന, നേർച്ച"] },
+    { date: "സെപ്റ്റംബർ 8 | ചൊവ്വ (തിരുനാൾ ദിനം)", events: ["🕔 5:00 pm – ദിവ്യകാരുണ്യ ആരാധന", "🕠 5:15 pm – മദ്ധ്യസ്ഥ പ്രാർത്ഥന", "🕠 5:30 pm – വി. കുർബാന", "ജപമാല പ്രദക്ഷിണം, നേർച്ച – കൊടിയിറക്ക്"] }
+];
+
+const imageUrls = [
+    "https://upload.wikimedia.org/wikipedia/commons/e/ec/Madonna_of_the_Magnificat_-_Google_Art_Project.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/7/77/Pietro_Perugino_052.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/5/5e/Raphael_-_The_Madonna_della_Seggiola_-_Google_Art_Project.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/8/8a/Madonna_dello_Steccato.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/e/e0/Gerard_David_-_Rest_on_the_Flight_into_Egypt_-_Google_Art_Project.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/e/e6/Madonna_col_Bambino_by_Gentile_da_Fabriano.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/9/9d/Sassoferrato_-_The_Virgin_in_Prayer_-_Google_Art_Project.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/c/c5/Madonna_of_the_Harpies_by_Andrea_del_Sarto.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/a/aa/Giovanni_Bellini_-_Madonna_of_the_Meadow_-_Google_Art_Project.jpg"
+];
+
+const overallView = document.getElementById('overallView');
+const dailyView = document.getElementById('dailyView');
+const dailyImage = document.getElementById('dailyImage');
+const focusDate = document.getElementById('focusDate');
+const focusEventsList = document.querySelector('#focusEvents ul');
+const dateSelector = document.getElementById('dateSelector');
+const showOverallBtn = document.getElementById('showOverall');
+const showDailyBtn = document.getElementById('showDaily');
+
+function populateOverallSchedule() {
+    overallView.innerHTML = '';
+    scheduleData.forEach((day, index) => {
+        const card = document.createElement('div');
+        card.className = 'schedule-card';
+        card.innerHTML = `
+            <div class="card-header-date">${day.date}</div>
+            <div class="card-events">
+                <ul>${day.events.map(event => `<li>${event}</li>`).join('')}</ul>
             </div>
-        
-        <div class="footer-note">
-            എല്ലാവരെയും എട്ടുനോമ്പ് തിരുനാൾ തിരുക്കർമ്മങ്ങളിൽ ഭക്തിപൂർവ്വം പങ്കുചേരുവാൻ സ്നേഹപൂർവ്വം ക്ഷണിക്കുന്നു.
-        </div>
-    </div>
+        `;
+        card.addEventListener('click', () => {
+            updateDailyFocus(index);
+            switchToDailyView();
+        });
+        overallView.appendChild(card);
+    });
+}
 
-    <script>
-        const scheduleData = [
-            {
-                date: "ആഗസ്റ്റ് 31 | തിങ്കൾ",
-                events: [
-                    "🕔 5:00 pm – കൊടിയേറ്റ്, മദ്ധ്യസ്ഥ പ്രാർത്ഥന",
-                    "🕠 5:30 pm – വി. കുർബാന – മരിയൻ പ്രഘോഷണം",
-                    "🕡 6:30 pm – ജപമാല പ്രദക്ഷിണം (പള്ളിക്ക് ചുറ്റും), നേർച്ച"
-                ]
-            },
-            {
-                date: "സെപ്റ്റംബർ 1 | ചൊവ്വ",
-                events: [
-                    "🕔 5:00 pm – ദിവ്യകാരുണ്യ ആരാധന",
-                    "🕠 5:15 pm – മദ്ധ്യസ്ഥ പ്രാർത്ഥന",
-                    "🕠 5:30 pm – വി. കുർബാന – മരിയൻ പ്രഘോഷണം",
-                    "🕡 6:30 pm – ജപമാല പ്രദക്ഷിണം, നേർച്ച"
-                ]
-            },
-            {
-                date: "സെപ്റ്റംബർ 2 മുതൽ 5 വരെ (ബുധൻ - ശനി)",
-                events: [
-                    "🕔 5:00 pm – ദിവ്യകാരുണ്യ ആരാധന",
-                    "🕠 5:15 pm – മദ്ധ്യസ്ഥ പ്രാർത്ഥന",
-                    "🕠 5:30 pm – വി. കുർബാന – മരിയൻ പ്രഘോഷണം",
-                    "🕡 6:30 pm – ജപമാല പ്രദക്ഷിണം, നേർച്ച",
-                    "<span class='special-note'>(സെപ്റ്റംബർ 1-ലെ ഇതേ ക്രമത്തിൽ തിരുക്കർമ്മങ്ങൾ നടത്തപ്പെടുന്നതാണ്)</span>"
-                ]
-            },
-            {
-                date: "സെപ്റ്റംബർ 6 | ഞായർ",
-                events: [
-                    "🕢 7:15 am – വി. കുർബാന, സൺഡേ സ്കൂൾ",
-                    "🕔 5:00 pm – ദിവ്യകാരുണ്യ ആരാധന",
-                    "🕠 5:30 pm – മദ്ധ്യസ്ഥ പ്രാർത്ഥന, ജപമാല പ്രദക്ഷിണം, നേർച്ച"
-                ]
-            },
-            {
-                date: "സെപ്റ്റംബർ 7 | തിങ്കൾ",
-                events: [
-                    "🕔 5:00 pm – ജപമാല പ്രദക്ഷിണം",
-                    "🕠 5:30 pm – മദ്ധ്യസ്ഥ പ്രാർത്ഥന, വി. കുർബാന",
-                    "<span class='special-note'>(മുഖ്യകാർമ്മികൻ: കർദ്ദിനാൾ മാർ ജോർജ്ജ് ആലഞ്ചേരി)</span>",
-                    "ദിവ്യകാരുണ്യ ആരാധന, നേർച്ച"
-                ]
-            },
-            {
-                date: "സെപ്റ്റംബർ 8 | ചൊവ്വ (തിരുനാൾ ദിനം)",
-                events: [
-                    "🕔 5:00 pm – ദിവ്യകാരുണ്യ ആരാധന",
-                    "🕠 5:15 pm – മദ്ധ്യസ്ഥ പ്രാർത്ഥന",
-                    "🕠 5:30 pm – വി. കുർബാന",
-                    "തുടർന്ന് ജപമാല പ്രദക്ഷിണം",
-                    "<span class='special-note'>(പള്ളിയിൽ നിന്ന് St. Mary School-ലേക്ക്, തുടർന്ന് തിരികെ പള്ളിയിലേക്ക്)</span>",
-                    "നേർച്ച – കൊടിയിറക്ക്"
-                ]
-            }
-        ];
+function populateDateSelector() {
+    scheduleData.forEach((day, index) => {
+        const option = document.createElement('option');
+        option.value = index;
+        option.textContent = day.date;
+        dateSelector.appendChild(option);
+    });
+}
 
-        const contentContainer = document.getElementById('poster-dynamic-content');
-        const mainContainer = document.getElementById('poster-container');
-        const daySelector = document.getElementById('daySelector');
+function updateDailyFocus(index) {
+    dailyImage.style.opacity = 0; // Fade out
+    setTimeout(() => {
+        dailyImage.src = imageUrls[index];
+        dailyImage.style.opacity = 1; // Fade in
+    }, 500);
 
-        // Function to trigger CSS animation
-        function triggerAnimation() {
-            mainContainer.classList.remove('fade-in');
-            void mainContainer.offsetWidth; // Trigger reflow
-            mainContainer.classList.add('fade-in');
-        }
+    focusDate.textContent = scheduleData[index].date;
+    focusEventsList.innerHTML = scheduleData[index].events.map(event => `<li>${event}</li>`).join('');
+}
 
-        function initDropdown() {
-            scheduleData.forEach((day, index) => {
-                let option = document.createElement('option');
-                option.value = index;
-                option.text = day.date.replace(" (തിരുനാൾ ദിനം)", ""); 
-                daySelector.appendChild(option);
-            });
-        }
+function switchToOverallView() {
+    overallView.style.display = 'flex';
+    dailyView.style.display = 'none';
+    showOverallBtn.classList.add('active');
+    showDailyBtn.classList.remove('active');
+}
 
-        function createDayHTML(day) {
-            let eventsHTML = day.events.map(event => `<li>${event}</li>`).join('');
-            return `
-                <div class="day-card">
-                    <div class="day-title">${day.date}</div>
-                    <ul class="event-list">
-                        ${eventsHTML}
-                    </ul>
-                </div>
-            `;
-        }
+function switchToDailyView() {
+    overallView.style.display = 'none';
+    dailyView.style.display = 'flex';
+    showOverallBtn.classList.remove('active');
+    showDailyBtn.classList.add('active');
+}
 
-        function showOverallPoster() {
-            daySelector.style.display = 'none';
-            let htmlContent = '<div class="poster-content">';
-            scheduleData.forEach(day => {
-                htmlContent += createDayHTML(day);
-            });
-            htmlContent += '</div>';
-            
-            contentContainer.innerHTML = htmlContent;
-            triggerAnimation();
-        }
+// Initial Setup
+populateOverallSchedule();
+populateDateSelector();
+updateDailyFocus(0); // Show first day initially
 
-        function showSingleDaySelector() {
-            daySelector.style.display = 'inline-block';
-            renderSingleDay();
-        }
+// Event Listeners
+showOverallBtn.addEventListener('click', switchToOverallView);
+showDailyBtn.addEventListener('click', switchToDailyView);
+dateSelector.addEventListener('change', (e) => {
+    updateDailyFocus(e.target.value);
+    switchToDailyView();
+});
 
-        function renderSingleDay() {
-            const selectedIndex = daySelector.value;
-            const day = scheduleData[selectedIndex];
-            
-            let htmlContent = '<div class="poster-content single-day-poster">';
-            htmlContent += createDayHTML(day);
-            htmlContent += '</div>';
-            
-            contentContainer.innerHTML = htmlContent;
-            triggerAnimation();
-        }
+</script>
 
-        // Feature: Download as Image using html2canvas
-        function downloadPoster() {
-            const posterElement = document.getElementById('poster-container');
-            const originalTransform = posterElement.style.transform;
-            
-            // Brief styling reset to ensure high quality render
-            posterElement.style.transform = 'none';
-            
-            html2canvas(posterElement, {
-                scale: 2, // Higher resolution
-                useCORS: true,
-                backgroundColor: null
-            }).then(canvas => {
-                posterElement.style.transform = originalTransform;
-                
-                // Create image and trigger download
-                const image = canvas.toDataURL("image/png");
-                const link = document.createElement('a');
-                
-                // Set appropriate filename based on current view
-                let fileName = 'Ettu_Nombu_Overall_Schedule.png';
-                if (daySelector.style.display !== 'none') {
-                    const dayName = scheduleData[daySelector.value].date.split('|')[0].trim();
-                    fileName = `Ettu_Nombu_${dayName}.png`;
-                }
-                
-                link.download = fileName;
-                link.href = image;
-                link.click();
-            });
-        }
-
-        initDropdown();
-        showOverallPoster();
-
-    </script>
 </body>
 </html>
