@@ -34,10 +34,14 @@
 
 
     <!-- =====================================================
-         PHOTO SCROLL / ADJUSTMENT STYLES
+         DAILY PHOTO SCROLL
          ===================================================== -->
 
     <style>
+
+        /*
+         * Photo editor container
+         */
 
         .photo-editor {
             position: relative;
@@ -46,11 +50,9 @@
 
 
         /*
-         * Scrollable photograph.
+         * Scrollable photo area
          *
-         * The image itself is NOT cropped with object-fit: cover.
-         * This allows the user to move vertically through the
-         * complete photograph.
+         * The photograph can be moved vertically.
          */
 
         .daily-image {
@@ -75,7 +77,9 @@
         }
 
 
-        /* Chrome / Edge / Safari scrollbar */
+        /*
+         * Chrome / Edge / Safari scrollbar
+         */
 
         .daily-image::-webkit-scrollbar {
             width: 8px;
@@ -92,8 +96,7 @@
             background:
                 rgba(255,255,255,0.65);
 
-            border-radius:
-                20px;
+            border-radius: 20px;
         }
 
 
@@ -104,11 +107,10 @@
 
 
         /*
-         * IMPORTANT:
+         * Photograph
          *
-         * No dark image overlay is used.
-         *
-         * The photograph remains completely natural.
+         * No object-fit: cover.
+         * No dark overlay.
          */
 
         .daily-image img {
@@ -125,15 +127,12 @@
             user-select: none;
 
             -webkit-user-drag: none;
-
-            transition:
-                opacity 0.25s ease;
         }
 
 
         /*
-         * Ensure any old image-overlay styling
-         * from style.css cannot darken the photo.
+         * Completely disable the old overlay
+         * from style.css.
          */
 
         .daily-image .image-overlay {
@@ -141,9 +140,25 @@
         }
 
 
-        /* =====================================================
-           SCROLL INSTRUCTION
-           ===================================================== */
+        /*
+         * Keep the cross visible.
+         */
+
+        .daily-image .image-cross {
+            position: absolute;
+
+            top: 18px;
+            left: 18px;
+
+            z-index: 5;
+
+            pointer-events: none;
+        }
+
+
+        /*
+         * Scroll instruction
+         */
 
         .photo-scroll-hint {
             position: absolute;
@@ -191,78 +206,9 @@
         }
 
 
-        /* =====================================================
-           PHOTO CONTROL BUTTONS
-           ===================================================== */
-
-        .photo-controls {
-            display: flex;
-
-            justify-content: center;
-
-            align-items: center;
-
-            flex-wrap: wrap;
-
-            gap: 8px;
-
-            padding:
-                11px;
-
-            background:
-                #f5ecde;
-
-            border-bottom:
-                1px solid #dfd0b7;
-        }
-
-
-        .photo-controls button {
-            border:
-                1px solid #d4c3a5;
-
-            background:
-                #fffdf8;
-
-            color:
-                #65152d;
-
-            padding:
-                7px 14px;
-
-            border-radius:
-                7px;
-
-            cursor:
-                pointer;
-
-            font-family:
-                "Noto Sans Malayalam",
-                sans-serif;
-
-            font-size:
-                12px;
-
-            transition:
-                0.2s ease;
-        }
-
-
-        .photo-controls button:hover {
-            background:
-                #65152d;
-
-            color:
-                white;
-
-            border-color:
-                #65152d;
-        }
-
-
-        /* =====================================================
-           MOBILE
-           ===================================================== */
+        /*
+         * Mobile
+         */
 
         @media (max-width: 650px) {
 
@@ -271,8 +217,8 @@
             }
 
             .photo-scroll-hint {
-                font-size:
-                    10px;
+
+                font-size: 10px;
 
                 padding:
                     7px 11px;
@@ -309,7 +255,7 @@
 
 
     <!-- =====================================================
-         CHURCH HEADER
+         HEADER
          ===================================================== -->
 
     <header class="church-header">
@@ -432,7 +378,7 @@
 
 
         <!-- =================================================
-             OVERALL SCHEDULE
+             OVERALL VIEW
              ================================================= -->
 
         <section
@@ -440,14 +386,16 @@
             class="overall-view"
         >
 
-            <!-- JavaScript creates all 9 days -->
+            <!--
+                JavaScript inserts all 9 individual days.
+            -->
 
         </section>
 
 
 
         <!-- =================================================
-             DAILY POSTER
+             DAILY POSTER VIEW
              ================================================= -->
 
         <section
@@ -460,7 +408,7 @@
 
 
                 <!-- =========================================
-                     ADJUSTABLE PHOTO
+                     PHOTO
                      ========================================= -->
 
                 <div class="photo-editor">
@@ -481,24 +429,22 @@
 
 
                         <!--
-                            NO IMAGE OVERLAY HERE.
-
-                            This means Mother Mary's photograph
-                            stays completely natural.
+                            No dark image overlay.
                         -->
 
 
-                        <div class="image-cross">
+                        <div
+                            class="image-cross"
+                        >
                             ✝
                         </div>
 
                     </div>
 
 
-
                     <!--
-                        Instruction is only visible on the
-                        website and will not appear in downloads.
+                        Screen-only instruction.
+                        It will not appear in downloaded poster.
                     -->
 
                     <div
@@ -512,62 +458,18 @@
 
                     </div>
 
-
-
-                    <!--
-                        Mobile-friendly controls.
-                    -->
-
-                    <div
-                        class="photo-controls"
-                        data-html2canvas-ignore="true"
-                    >
-
-                        <button
-                            type="button"
-                            id="photoUp"
-                        >
-
-                            ↑ മുകളിലേക്ക്
-
-                        </button>
-
-
-                        <button
-                            type="button"
-                            id="photoDown"
-                        >
-
-                            ↓ താഴേക്ക്
-
-                        </button>
-
-
-                        <button
-                            type="button"
-                            id="photoReset"
-                        >
-
-                            ↺ Reset
-
-                        </button>
-
-                    </div>
-
                 </div>
 
 
 
                 <!-- =========================================
-                     DAILY PROGRAMME
+                     DAILY CONTENT
                      ========================================= -->
 
                 <div class="daily-content">
 
                     <p class="daily-small-title">
-
                         എട്ടുനോമ്പ് തിരുനാൾ
-
                     </p>
 
 
@@ -626,9 +528,7 @@
 
 
         <small>
-
             ദൈവാനുഗ്രഹം എല്ലാവരിലും ഉണ്ടാകട്ടെ
-
         </small>
 
     </footer>
@@ -637,9 +537,7 @@
 
 
 
-<!-- =========================================================
-     TOAST
-     ========================================================= -->
+<!-- Toast -->
 
 <div
     id="toast"
@@ -648,17 +546,17 @@
 
 
 
-<!-- =========================================================
-     EXISTING SCRIPT
-     ========================================================= -->
+<!-- =====================================================
+     EXISTING JAVASCRIPT
+     ===================================================== -->
 
 <script src="script.js"></script>
 
 
 
-<!-- =========================================================
-     PHOTO POSITION CONTROLS
-     ========================================================= -->
+<!-- =====================================================
+     PHOTO SCROLL JAVASCRIPT
+     ===================================================== -->
 
 <script>
 
@@ -673,24 +571,6 @@ document.addEventListener(
             );
 
 
-        const photoUp =
-            document.getElementById(
-                "photoUp"
-            );
-
-
-        const photoDown =
-            document.getElementById(
-                "photoDown"
-            );
-
-
-        const photoReset =
-            document.getElementById(
-                "photoReset"
-            );
-
-
         const photoHint =
             document.getElementById(
                 "photoHint"
@@ -702,9 +582,10 @@ document.addEventListener(
         }
 
 
-        /* =================================================
-           MOUSE WHEEL
-           ================================================= */
+
+        /*
+         * Mouse wheel scrolling
+         */
 
         photoFrame.addEventListener(
             "wheel",
@@ -729,9 +610,13 @@ document.addEventListener(
         );
 
 
-        /* =================================================
-           KEYBOARD
-           ================================================= */
+
+        /*
+         * Keyboard support
+         *
+         * Click the photograph and use
+         * ↑ / ↓ / Home / End.
+         */
 
         photoFrame.addEventListener(
             "keydown",
@@ -810,81 +695,10 @@ document.addEventListener(
         );
 
 
-        /* =================================================
-           UP BUTTON
-           ================================================= */
 
-        if (photoUp) {
-
-            photoUp.addEventListener(
-                "click",
-                function () {
-
-                    photoFrame.scrollBy({
-
-                        top: -100,
-
-                        behavior: "smooth"
-
-                    });
-
-                }
-            );
-
-        }
-
-
-        /* =================================================
-           DOWN BUTTON
-           ================================================= */
-
-        if (photoDown) {
-
-            photoDown.addEventListener(
-                "click",
-                function () {
-
-                    photoFrame.scrollBy({
-
-                        top: 100,
-
-                        behavior: "smooth"
-
-                    });
-
-                }
-            );
-
-        }
-
-
-        /* =================================================
-           RESET
-           ================================================= */
-
-        if (photoReset) {
-
-            photoReset.addEventListener(
-                "click",
-                function () {
-
-                    photoFrame.scrollTo({
-
-                        top: 0,
-
-                        behavior: "smooth"
-
-                    });
-
-                }
-            );
-
-        }
-
-
-        /* =================================================
-           HIDE HINT AFTER SCROLL
-           ================================================= */
+        /*
+         * Hide instruction when scrolling.
+         */
 
         let hintTimer;
 
@@ -922,9 +736,9 @@ document.addEventListener(
         );
 
 
-        /* =================================================
-           TOUCH
-           ================================================= */
+        /*
+         * Touch / mobile support
+         */
 
         photoFrame.addEventListener(
             "touchstart",
