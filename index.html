@@ -39,10 +39,6 @@
 
     <style>
 
-        /*
-         * Photo editor container
-         */
-
         .photo-editor {
             position: relative;
             width: 100%;
@@ -50,9 +46,7 @@
 
 
         /*
-         * Scrollable photo area
-         *
-         * The photograph can be moved vertically.
+         * Scrollable photograph.
          */
 
         .daily-image {
@@ -77,9 +71,7 @@
         }
 
 
-        /*
-         * Chrome / Edge / Safari scrollbar
-         */
+        /* Chrome / Edge / Safari scrollbar */
 
         .daily-image::-webkit-scrollbar {
             width: 8px;
@@ -107,10 +99,9 @@
 
 
         /*
-         * Photograph
+         * Natural photograph.
          *
-         * No object-fit: cover.
-         * No dark overlay.
+         * No dark gradient overlay.
          */
 
         .daily-image img {
@@ -131,8 +122,7 @@
 
 
         /*
-         * Completely disable the old overlay
-         * from style.css.
+         * Disable any old overlay from style.css.
          */
 
         .daily-image .image-overlay {
@@ -141,7 +131,7 @@
 
 
         /*
-         * Keep the cross visible.
+         * Keep church cross visible.
          */
 
         .daily-image .image-cross {
@@ -157,56 +147,6 @@
 
 
         /*
-         * Scroll instruction
-         */
-
-        .photo-scroll-hint {
-            position: absolute;
-
-            left: 50%;
-            bottom: 15px;
-
-            transform:
-                translateX(-50%);
-
-            z-index: 10;
-
-            padding:
-                8px 15px;
-
-            border-radius:
-                30px;
-
-            color: white;
-
-            background:
-                rgba(45,8,20,0.75);
-
-            backdrop-filter:
-                blur(8px);
-
-            font-family:
-                "Noto Sans Malayalam",
-                sans-serif;
-
-            font-size:
-                12px;
-
-            white-space:
-                nowrap;
-
-            pointer-events:
-                none;
-
-            opacity:
-                0.95;
-
-            transition:
-                opacity 0.3s ease;
-        }
-
-
-        /*
          * Mobile
          */
 
@@ -214,23 +154,6 @@
 
             .daily-image {
                 height: 330px;
-            }
-
-            .photo-scroll-hint {
-
-                font-size: 10px;
-
-                padding:
-                    7px 11px;
-
-                max-width:
-                    calc(100% - 25px);
-
-                overflow:
-                    hidden;
-
-                text-overflow:
-                    ellipsis;
             }
 
         }
@@ -386,9 +309,7 @@
             class="overall-view"
         >
 
-            <!--
-                JavaScript inserts all 9 individual days.
-            -->
+            <!-- JavaScript inserts all 9 days -->
 
         </section>
 
@@ -429,7 +350,8 @@
 
 
                         <!--
-                            No dark image overlay.
+                            No image overlay.
+                            No scroll warning.
                         -->
 
 
@@ -438,23 +360,6 @@
                         >
                             ✝
                         </div>
-
-                    </div>
-
-
-                    <!--
-                        Screen-only instruction.
-                        It will not appear in downloaded poster.
-                    -->
-
-                    <div
-                        class="photo-scroll-hint"
-                        id="photoHint"
-                        data-html2canvas-ignore="true"
-                    >
-
-                        ↕ ചിത്രം മുകളിലേക്കും താഴേക്കും
-                        സ്ക്രോൾ ചെയ്ത് ക്രമീകരിക്കാം
 
                     </div>
 
@@ -571,16 +476,9 @@ document.addEventListener(
             );
 
 
-        const photoHint =
-            document.getElementById(
-                "photoHint"
-            );
-
-
         if (!photoFrame) {
             return;
         }
-
 
 
         /*
@@ -610,12 +508,15 @@ document.addEventListener(
         );
 
 
-
         /*
          * Keyboard support
          *
-         * Click the photograph and use
-         * ↑ / ↓ / Home / End.
+         * Click the photo and use:
+         *
+         * ↑
+         * ↓
+         * Home
+         * End
          */
 
         photoFrame.addEventListener(
@@ -695,49 +596,8 @@ document.addEventListener(
         );
 
 
-
         /*
-         * Hide instruction when scrolling.
-         */
-
-        let hintTimer;
-
-
-        photoFrame.addEventListener(
-            "scroll",
-            function () {
-
-                if (!photoHint) {
-                    return;
-                }
-
-
-                photoHint.style.opacity =
-                    "0";
-
-
-                clearTimeout(
-                    hintTimer
-                );
-
-
-                hintTimer =
-                    setTimeout(
-                        function () {
-
-                            photoHint.style.opacity =
-                                "0.95";
-
-                        },
-                        1200
-                    );
-
-            }
-        );
-
-
-        /*
-         * Touch / mobile support
+         * Touch support
          */
 
         photoFrame.addEventListener(
