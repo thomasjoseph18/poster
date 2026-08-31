@@ -1,9 +1,15 @@
 ```html
 <!DOCTYPE html>
 <html lang="ml">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>എട്ടുനോമ്പ് തിരുനാൾ 2026</title>
 
@@ -12,49 +18,88 @@
         content="എട്ടുനോമ്പ് തിരുനാൾ 2026 - തിരുക്കർമ്മങ്ങളുടെ സമയക്രമം"
     >
 
-    <!-- Malayalam Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- =====================================================
+         MALAYALAM FONTS
+         ===================================================== -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
 
     <link
         href="https://fonts.googleapis.com/css2?family=Manjari:wght@400;700&family=Noto+Sans+Malayalam:wght@400;500;600;700;800&display=swap"
         rel="stylesheet"
     >
 
-    <!-- Icons -->
+
+    <!-- =====================================================
+         FONT AWESOME
+         ===================================================== -->
+
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     >
 
-    <!-- html2canvas -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
-    <link rel="stylesheet" href="style.css">
+    <!-- =====================================================
+         HTML2CANVAS
+         ===================================================== -->
+
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+    ></script>
 
 
     <!-- =====================================================
-         DAILY PHOTO SCROLL
+         EXISTING CSS
+         ===================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+
+    <!-- =====================================================
+         PHOTO SCROLL CSS
          ===================================================== -->
 
     <style>
 
+        /*
+         * Photo editor
+         */
+
         .photo-editor {
+
             position: relative;
+
             width: 100%;
+
         }
 
 
         /*
-         * Scrollable photograph.
+         * Scrollable daily photograph
          */
 
         .daily-image {
+
             position: relative;
 
             height: 440px;
 
             overflow-y: auto;
+
             overflow-x: hidden;
 
             background: #3a101b;
@@ -65,46 +110,59 @@
 
             scrollbar-color:
                 rgba(255,255,255,0.75)
-                rgba(0,0,0,0.25);
+                rgba(0,0,0,0.20);
 
             cursor: ns-resize;
-        }
 
-
-        /* Chrome / Edge / Safari scrollbar */
-
-        .daily-image::-webkit-scrollbar {
-            width: 8px;
-        }
-
-
-        .daily-image::-webkit-scrollbar-track {
-            background:
-                rgba(0,0,0,0.20);
-        }
-
-
-        .daily-image::-webkit-scrollbar-thumb {
-            background:
-                rgba(255,255,255,0.65);
-
-            border-radius: 20px;
-        }
-
-
-        .daily-image::-webkit-scrollbar-thumb:hover {
-            background:
-                rgba(255,255,255,0.9);
         }
 
 
         /*
-         * Natural photograph.
+         * Chrome / Edge / Safari scrollbar
+         */
+
+        .daily-image::-webkit-scrollbar {
+
+            width: 8px;
+
+        }
+
+
+        .daily-image::-webkit-scrollbar-track {
+
+            background:
+                rgba(0,0,0,0.20);
+
+        }
+
+
+        .daily-image::-webkit-scrollbar-thumb {
+
+            background:
+                rgba(255,255,255,0.65);
+
+            border-radius: 20px;
+
+        }
+
+
+        .daily-image::-webkit-scrollbar-thumb:hover {
+
+            background:
+                rgba(255,255,255,0.90);
+
+        }
+
+
+        /*
+         * Photograph
          *
-         * No dark gradient overlay.
+         * No crop.
+         * No dark overlay.
          */
 
         .daily-image img {
+
             width: 100%;
 
             height: auto;
@@ -118,31 +176,40 @@
             user-select: none;
 
             -webkit-user-drag: none;
+
         }
 
 
         /*
-         * Disable any old overlay from style.css.
+         * Completely disable any old
+         * gradient overlay from style.css.
          */
 
         .daily-image .image-overlay {
+
             display: none !important;
+
+            background: none !important;
+
         }
 
 
         /*
-         * Keep church cross visible.
+         * Cross on photograph
          */
 
         .daily-image .image-cross {
+
             position: absolute;
 
             top: 18px;
+
             left: 18px;
 
             z-index: 5;
 
             pointer-events: none;
+
         }
 
 
@@ -153,7 +220,9 @@
         @media (max-width: 650px) {
 
             .daily-image {
+
                 height: 330px;
+
             }
 
         }
@@ -162,7 +231,9 @@
         @media (max-width: 400px) {
 
             .daily-image {
+
                 height: 280px;
+
             }
 
         }
@@ -174,6 +245,7 @@
 
 <body>
 
+
 <div class="site">
 
 
@@ -183,27 +255,44 @@
 
     <header class="church-header">
 
+
         <div class="cross-symbol">
+
             ✝
+
         </div>
+
 
         <div class="header-content">
 
+
             <p class="church-label">
+
                 പരിശുദ്ധ കന്യകാമറിയത്തിന്റെ ജനനത്തിരുനാൾ
+
             </p>
 
+
             <h1>
+
                 എട്ടുനോമ്പ് തിരുനാൾ
+
             </h1>
 
+
             <div class="year">
+
                 2026
+
             </div>
 
+
             <div class="date-range">
+
                 ആഗസ്റ്റ് 31 മുതൽ സെപ്റ്റംബർ 8 വരെ
+
             </div>
+
 
             <div class="header-line">
 
@@ -215,11 +304,16 @@
 
             </div>
 
+
             <p class="schedule-label">
+
                 തിരുക്കർമ്മങ്ങളുടെ സമയക്രമം
+
             </p>
 
+
         </div>
+
 
     </header>
 
@@ -234,11 +328,16 @@
         data-html2canvas-ignore="true"
     >
 
+
         <div class="nav-inner">
+
+
+            <!-- Overall -->
 
             <button
                 class="nav-button active"
                 id="showOverall"
+                type="button"
             >
 
                 <i class="fa-solid fa-calendar-days"></i>
@@ -248,9 +347,12 @@
             </button>
 
 
+            <!-- Daily -->
+
             <button
                 class="nav-button"
                 id="showDaily"
+                type="button"
             >
 
                 <i class="fa-solid fa-image"></i>
@@ -259,6 +361,8 @@
 
             </button>
 
+
+            <!-- Date selector -->
 
             <select
                 id="dateSelector"
@@ -270,15 +374,20 @@
                     selected
                     disabled
                 >
+
                     തീയതി തിരഞ്ഞെടുക്കുക
+
                 </option>
 
             </select>
 
 
+            <!-- Download -->
+
             <button
                 class="download-button"
                 id="downloadBtn"
+                type="button"
             >
 
                 <i class="fa-solid fa-download"></i>
@@ -287,7 +396,9 @@
 
             </button>
 
+
         </div>
+
 
     </nav>
 
@@ -309,14 +420,16 @@
             class="overall-view"
         >
 
-            <!-- JavaScript inserts all 9 days -->
+            <!--
+                script.js generates all 9 days here.
+            -->
 
         </section>
 
 
 
         <!-- =================================================
-             DAILY POSTER VIEW
+             DAILY VIEW
              ================================================= -->
 
         <section
@@ -324,6 +437,7 @@
             class="daily-view"
             hidden
         >
+
 
             <div class="daily-poster">
 
@@ -339,8 +453,9 @@
                         class="daily-image"
                         id="photoFrame"
                         tabindex="0"
-                        aria-label="ചിത്രം മുകളിലേക്കും താഴേക്കും ക്രമീകരിക്കുക"
+                        aria-label="ചിത്രം ക്രമീകരിക്കുക"
                     >
+
 
                         <img
                             id="dailyImage"
@@ -350,18 +465,26 @@
 
 
                         <!--
-                            No image overlay.
-                            No scroll warning.
+                            IMPORTANT:
+
+                            No image-overlay is used.
+
+                            Therefore there is no dark
+                            gradient over Mother Mary.
                         -->
 
 
                         <div
                             class="image-cross"
                         >
+
                             ✝
+
                         </div>
 
+
                     </div>
+
 
                 </div>
 
@@ -373,8 +496,11 @@
 
                 <div class="daily-content">
 
+
                     <p class="daily-small-title">
+
                         എട്ടുനോമ്പ് തിരുനാൾ
+
                     </p>
 
 
@@ -385,13 +511,17 @@
 
                     <div class="decorative-line">
 
+
                         <span></span>
+
 
                         <i
                             class="fa-solid fa-cross"
                         ></i>
 
+
                         <span></span>
+
 
                     </div>
 
@@ -400,11 +530,15 @@
                         id="focusEvents"
                     ></div>
 
+
                 </div>
+
 
             </div>
 
+
         </section>
+
 
     </main>
 
@@ -416,8 +550,11 @@
 
     <footer class="church-footer">
 
+
         <div class="footer-cross">
+
             ✝
+
         </div>
 
 
@@ -433,16 +570,22 @@
 
 
         <small>
+
             ദൈവാനുഗ്രഹം എല്ലാവരിലും ഉണ്ടാകട്ടെ
+
         </small>
 
+
     </footer>
+
 
 </div>
 
 
 
-<!-- Toast -->
+<!-- =====================================================
+     TOAST
+     ===================================================== -->
 
 <div
     id="toast"
@@ -452,7 +595,7 @@
 
 
 <!-- =====================================================
-     EXISTING JAVASCRIPT
+     EXISTING SCRIPT
      ===================================================== -->
 
 <script src="script.js"></script>
@@ -460,7 +603,7 @@
 
 
 <!-- =====================================================
-     PHOTO SCROLL JAVASCRIPT
+     PHOTO SCROLL + DOWNLOAD FIX
      ===================================================== -->
 
 <script>
@@ -470,156 +613,715 @@ document.addEventListener(
     function () {
 
 
+        /* =================================================
+           ELEMENTS
+           ================================================= */
+
         const photoFrame =
             document.getElementById(
                 "photoFrame"
             );
 
 
-        if (!photoFrame) {
+        const downloadBtn =
+            document.getElementById(
+                "downloadBtn"
+            );
+
+
+        const overallView =
+            document.getElementById(
+                "overallView"
+            );
+
+
+        const dailyView =
+            document.getElementById(
+                "dailyView"
+            );
+
+
+        /* =================================================
+           PHOTO SCROLL
+           ================================================= */
+
+        if (photoFrame) {
+
+
+            /*
+             * Mouse wheel
+             */
+
+            photoFrame.addEventListener(
+                "wheel",
+                function (event) {
+
+
+                    if (
+                        photoFrame.scrollHeight >
+                        photoFrame.clientHeight
+                    ) {
+
+
+                        event.preventDefault();
+
+
+                        photoFrame.scrollTop +=
+                            event.deltaY;
+
+
+                    }
+
+                },
+                {
+                    passive: false
+                }
+            );
+
+
+            /*
+             * Keyboard
+             */
+
+            photoFrame.addEventListener(
+                "keydown",
+                function (event) {
+
+
+                    if (
+                        event.key === "ArrowUp"
+                    ) {
+
+                        event.preventDefault();
+
+
+                        photoFrame.scrollBy({
+
+                            top: -80,
+
+                            behavior: "smooth"
+
+                        });
+
+                    }
+
+
+                    if (
+                        event.key === "ArrowDown"
+                    ) {
+
+                        event.preventDefault();
+
+
+                        photoFrame.scrollBy({
+
+                            top: 80,
+
+                            behavior: "smooth"
+
+                        });
+
+                    }
+
+
+                    if (
+                        event.key === "Home"
+                    ) {
+
+                        event.preventDefault();
+
+
+                        photoFrame.scrollTo({
+
+                            top: 0,
+
+                            behavior: "smooth"
+
+                        });
+
+                    }
+
+
+                    if (
+                        event.key === "End"
+                    ) {
+
+                        event.preventDefault();
+
+
+                        photoFrame.scrollTo({
+
+                            top:
+                                photoFrame.scrollHeight,
+
+                            behavior: "smooth"
+
+                        });
+
+                    }
+
+
+                }
+            );
+
+
+            /*
+             * Touch
+             */
+
+            photoFrame.addEventListener(
+                "touchstart",
+                function () {
+
+                    photoFrame.style.cursor =
+                        "grabbing";
+
+                }
+            );
+
+
+            photoFrame.addEventListener(
+                "touchend",
+                function () {
+
+                    photoFrame.style.cursor =
+                        "ns-resize";
+
+                }
+            );
+
+
+        }
+
+
+
+        /* =================================================
+           DOWNLOAD BUTTON
+           ================================================= */
+
+        if (!downloadBtn) {
+
             return;
+
         }
 
 
         /*
-         * Mouse wheel scrolling
+         * Clone the button.
+         *
+         * This removes any broken/old click handler
+         * that may have been attached by script.js.
          */
 
-        photoFrame.addEventListener(
-            "wheel",
-            function (event) {
+        const cleanDownloadBtn =
+            downloadBtn.cloneNode(true);
 
-                if (
-                    photoFrame.scrollHeight >
-                    photoFrame.clientHeight
-                ) {
 
-                    event.preventDefault();
-
-                    photoFrame.scrollTop +=
-                        event.deltaY;
-
-                }
-
-            },
-            {
-                passive: false
-            }
+        downloadBtn.parentNode.replaceChild(
+            cleanDownloadBtn,
+            downloadBtn
         );
 
 
         /*
-         * Keyboard support
-         *
-         * Click the photo and use:
-         *
-         * ↑
-         * ↓
-         * Home
-         * End
+         * New download handler
          */
 
-        photoFrame.addEventListener(
-            "keydown",
-            function (event) {
+        cleanDownloadBtn.addEventListener(
+            "click",
+            async function () {
 
+
+                /*
+                 * Check html2canvas
+                 */
 
                 if (
-                    event.key === "ArrowUp"
+                    typeof html2canvas ===
+                    "undefined"
                 ) {
 
-                    event.preventDefault();
 
-                    photoFrame.scrollBy({
+                    alert(
+                        "Poster download library could not be loaded."
+                    );
 
-                        top: -80,
 
-                        behavior: "smooth"
-
-                    });
+                    return;
 
                 }
 
 
-                if (
-                    event.key === "ArrowDown"
-                ) {
+                /*
+                 * Save original button
+                 */
 
-                    event.preventDefault();
+                const originalButtonText =
+                    cleanDownloadBtn.innerHTML;
 
-                    photoFrame.scrollBy({
 
-                        top: 80,
+                cleanDownloadBtn.disabled =
+                    true;
 
-                        behavior: "smooth"
 
-                    });
+                cleanDownloadBtn.innerHTML =
+
+                    '<i class="fa-solid fa-spinner fa-spin"></i> തയ്യാറാക്കുന്നു...';
+
+
+
+                try {
+
+
+                    /* =====================================
+                       DETERMINE POSTER
+                       ===================================== */
+
+
+                    let target;
+
+
+                    if (
+                        dailyView &&
+                        !dailyView.hidden
+                    ) {
+
+                        target =
+                            dailyView;
+
+                    } else {
+
+                        target =
+                            overallView;
+
+                    }
+
+
+                    if (!target) {
+
+                        throw new Error(
+                            "Poster element not found."
+                        );
+
+                    }
+
+
+
+                    /* =====================================
+                       WAIT FOR IMAGES
+                       ===================================== */
+
+
+                    const images =
+                        target.querySelectorAll(
+                            "img"
+                        );
+
+
+                    await Promise.all(
+
+                        Array.from(images).map(
+                            function (img) {
+
+                                if (
+                                    img.complete
+                                ) {
+
+                                    return Promise.resolve();
+
+                                }
+
+
+                                return new Promise(
+                                    function (
+                                        resolve
+                                    ) {
+
+                                        img.onload =
+                                            resolve;
+
+                                        img.onerror =
+                                            resolve;
+
+                                    }
+                                );
+
+                            }
+                        )
+
+                    );
+
+
+
+                    /* =====================================
+                       HIDE SCREEN-ONLY ELEMENTS
+                       ===================================== */
+
+
+                    const ignoredElements =
+                        target.querySelectorAll(
+                            '[data-html2canvas-ignore="true"]'
+                        );
+
+
+                    const originalDisplays =
+                        [];
+
+
+                    ignoredElements.forEach(
+                        function (element) {
+
+
+                            originalDisplays.push({
+
+                                element:
+                                    element,
+
+                                display:
+                                    element.style.display
+
+                            });
+
+
+                            element.style.display =
+                                "none";
+
+
+                        }
+                    );
+
+
+
+                    /* =====================================
+                       DAILY PHOTO
+                       ===================================== */
+
+                    let oldOverflow =
+                        null;
+
+
+                    let oldHeight =
+                        null;
+
+
+                    let oldPosition =
+                        null;
+
+
+                    let oldImageTransform =
+                        null;
+
+
+                    if (
+                        photoFrame &&
+                        !dailyView.hidden
+                    ) {
+
+
+                        /*
+                         * Keep the user's current
+                         * scroll position.
+                         */
+
+                        const currentScroll =
+                            photoFrame.scrollTop;
+
+
+                        oldOverflow =
+                            photoFrame.style.overflow;
+
+
+                        oldHeight =
+                            photoFrame.style.height;
+
+
+                        oldPosition =
+                            photoFrame.style.position;
+
+
+                        photoFrame.style.overflow =
+                            "hidden";
+
+
+                        /*
+                         * Keep exact position while
+                         * html2canvas renders.
+                         */
+
+                        photoFrame.dataset.downloadScroll =
+                            currentScroll;
+
+
+                    }
+
+
+
+                    /* =====================================
+                       GIVE BROWSER TIME TO RENDER
+                       ===================================== */
+
+                    await new Promise(
+                        function (resolve) {
+
+                            setTimeout(
+                                resolve,
+                                200
+                            );
+
+                        }
+                    );
+
+
+
+                    /* =====================================
+                       CREATE CANVAS
+                       ===================================== */
+
+                    const canvas =
+                        await html2canvas(
+                            target,
+                            {
+
+                                scale: 2,
+
+                                useCORS: true,
+
+                                allowTaint: false,
+
+                                backgroundColor:
+                                    "#f8f3ea",
+
+                                logging: false,
+
+                                imageTimeout:
+                                    20000,
+
+                                scrollX: 0,
+
+                                scrollY: 0,
+
+                                windowWidth:
+                                    document.documentElement
+                                        .scrollWidth,
+
+                                windowHeight:
+                                    document.documentElement
+                                        .scrollHeight
+
+                            }
+                        );
+
+
+
+                    /* =====================================
+                       RESTORE SCREEN
+                       ===================================== */
+
+
+                    if (
+                        photoFrame &&
+                        !dailyView.hidden
+                    ) {
+
+                        photoFrame.style.overflow =
+                            oldOverflow || "";
+
+
+                        photoFrame.style.height =
+                            oldHeight || "";
+
+
+                        photoFrame.style.position =
+                            oldPosition || "";
+
+                    }
+
+
+
+                    originalDisplays.forEach(
+                        function (item) {
+
+                            item.element.style.display =
+                                item.display;
+
+                        }
+                    );
+
+
+
+                    /* =====================================
+                       CREATE PNG
+                       ===================================== */
+
+                    const image =
+                        canvas.toDataURL(
+                            "image/png",
+                            1.0
+                        );
+
+
+
+                    /* =====================================
+                       FILE NAME
+                       ===================================== */
+
+                    let fileName;
+
+
+                    if (
+                        dailyView &&
+                        !dailyView.hidden
+                    ) {
+
+
+                        const focusDate =
+                            document.getElementById(
+                                "focusDate"
+                            );
+
+
+                        let dateText =
+                            focusDate
+                                ? focusDate.innerText
+                                : "Daily";
+
+
+                        /*
+                         * Remove characters that
+                         * are not suitable for a filename.
+                         */
+
+                        dateText =
+                            dateText
+                                .replace(
+                                    /[\\/:*?"<>|]/g,
+                                    ""
+                                )
+                                .trim();
+
+
+                        fileName =
+
+                            "Ettu-Nombu-Thirunal-" +
+                            dateText +
+                            "-2026.png";
+
+
+                    } else {
+
+
+                        fileName =
+                            "Ettu-Nombu-Thirunal-2026.png";
+
+                    }
+
+
+
+                    /* =====================================
+                       DOWNLOAD
+                       ===================================== */
+
+                    const link =
+                        document.createElement(
+                            "a"
+                        );
+
+
+                    link.href =
+                        image;
+
+
+                    link.download =
+                        fileName;
+
+
+                    link.style.display =
+                        "none";
+
+
+                    document.body.appendChild(
+                        link
+                    );
+
+
+                    link.click();
+
+
+                    document.body.removeChild(
+                        link
+                    );
+
+
+
+                    /* =====================================
+                       SUCCESS TOAST
+                       ===================================== */
+
+                    const toast =
+                        document.getElementById(
+                            "toast"
+                        );
+
+
+                    if (toast) {
+
+                        toast.textContent =
+                            "പോസ്റ്റർ വിജയകരമായി ഡൗൺലോഡ് ചെയ്തു";
+
+                        toast.classList.add(
+                            "show"
+                        );
+
+
+                        setTimeout(
+                            function () {
+
+                                toast.classList.remove(
+                                    "show"
+                                );
+
+                            },
+                            3000
+                        );
+
+                    }
+
+
+                } catch (error) {
+
+
+                    console.error(
+                        "Poster download error:",
+                        error
+                    );
+
+
+                    alert(
+                        "പോസ്റ്റർ ഡൗൺലോഡ് ചെയ്യാൻ കഴിഞ്ഞില്ല. വീണ്ടും ശ്രമിക്കുക."
+                    );
+
+
+                } finally {
+
+
+                    /*
+                     * Always restore button.
+                     */
+
+                    cleanDownloadBtn.disabled =
+                        false;
+
+
+                    cleanDownloadBtn.innerHTML =
+                        '<i class="fa-solid fa-download"></i> പോസ്റ്റർ ഡൗൺലോഡ്';
+
 
                 }
 
-
-                if (
-                    event.key === "Home"
-                ) {
-
-                    event.preventDefault();
-
-                    photoFrame.scrollTo({
-
-                        top: 0,
-
-                        behavior: "smooth"
-
-                    });
-
-                }
-
-
-                if (
-                    event.key === "End"
-                ) {
-
-                    event.preventDefault();
-
-                    photoFrame.scrollTo({
-
-                        top:
-                            photoFrame.scrollHeight,
-
-                        behavior: "smooth"
-
-                    });
-
-                }
 
             }
         );
 
-
-        /*
-         * Touch support
-         */
-
-        photoFrame.addEventListener(
-            "touchstart",
-            function () {
-
-                photoFrame.style.cursor =
-                    "grabbing";
-
-            }
-        );
-
-
-        photoFrame.addEventListener(
-            "touchend",
-            function () {
-
-                photoFrame.style.cursor =
-                    "ns-resize";
-
-            }
-        );
 
     }
 
@@ -629,5 +1331,6 @@ document.addEventListener(
 
 
 </body>
+
 </html>
 ```
