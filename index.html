@@ -1,226 +1,952 @@
 <!DOCTYPE html>
+
 <html lang="ml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>എട്ടുനോമ്പ് തിരുനാൾ 2026</title>
+```
+<title>എട്ടുനോമ്പ് തിരുനാൾ 2026</title>
 
-    <meta
-        name="description"
-        content="എട്ടുനോമ്പ് തിരുനാൾ 2026 - തിരുക്കർമ്മങ്ങളുടെ സമയക്രമം"
-    >
+<meta
+    name="description"
+    content="എട്ടുനോമ്പ് തിരുനാൾ 2026 - തിരുക്കർമ്മങ്ങളുടെ സമയക്രമം"
+>
 
-    <!-- Malayalam Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Malayalam Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Manjari:wght@400;700&family=Noto+Sans+Malayalam:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet"
-    >
+<link
+    href="https://fonts.googleapis.com/css2?family=Manjari:wght@400;700&family=Noto+Sans+Malayalam:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+>
 
-    <!-- Icons -->
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    >
+<!-- Icons -->
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+>
 
-    <!-- html2canvas -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<!-- html2canvas -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+    /* =====================================================
+       ADJUSTABLE MOTHER MARY PHOTO
+       ===================================================== */
+
+    .photo-editor {
+        position: relative;
+        width: 100%;
+    }
+
+    .daily-image {
+        position: relative;
+
+        height: 440px;
+
+        overflow-y: auto;
+        overflow-x: hidden;
+
+        background: #3a101b;
+
+        scroll-behavior: smooth;
+
+        scrollbar-width: thin;
+
+        scrollbar-color:
+            rgba(255,255,255,0.75)
+            rgba(0,0,0,0.25);
+
+        cursor: ns-resize;
+    }
+
+
+    /* Chrome / Edge / Safari */
+
+    .daily-image::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .daily-image::-webkit-scrollbar-track {
+        background:
+            rgba(0,0,0,0.25);
+    }
+
+    .daily-image::-webkit-scrollbar-thumb {
+        background:
+            rgba(255,255,255,0.65);
+
+        border-radius: 20px;
+    }
+
+    .daily-image::-webkit-scrollbar-thumb:hover {
+        background:
+            rgba(255,255,255,0.9);
+    }
+
+
+    /*
+       The complete photograph is kept instead of
+       using object-fit: cover.
+
+       This allows the visitor to scroll vertically
+       and find the correct position of Mother Mary's
+       face or other important parts of the image.
+    */
+
+    .daily-image img {
+        width: 100%;
+
+        height: auto;
+
+        min-height: 100%;
+
+        display: block;
+
+        object-fit: contain;
+
+        user-select: none;
+
+        -webkit-user-drag: none;
+
+        transition:
+            opacity 0.25s ease;
+    }
+
+
+    /* =====================================================
+       PHOTO SCROLL INSTRUCTION
+       ===================================================== */
+
+    .photo-scroll-hint {
+        position: absolute;
+
+        left: 50%;
+        bottom: 15px;
+
+        transform:
+            translateX(-50%);
+
+        z-index: 10;
+
+        padding:
+            8px 15px;
+
+        border-radius:
+            30px;
+
+        color: white;
+
+        background:
+            rgba(45,8,20,0.75);
+
+        backdrop-filter:
+            blur(8px);
+
+        font-family:
+            "Noto Sans Malayalam",
+            sans-serif;
+
+        font-size:
+            12px;
+
+        white-space:
+            nowrap;
+
+        pointer-events:
+            none;
+
+        transition:
+            opacity 0.3s ease;
+    }
+
+
+    /* =====================================================
+       PHOTO CONTROL BUTTONS
+       ===================================================== */
+
+    .photo-controls {
+
+        display: flex;
+
+        justify-content: center;
+
+        align-items: center;
+
+        flex-wrap: wrap;
+
+        gap: 8px;
+
+        padding:
+            11px;
+
+        background:
+            #f5ecde;
+
+        border-bottom:
+            1px solid #dfd0b7;
+    }
+
+
+    .photo-controls button {
+
+        border:
+            1px solid #d4c3a5;
+
+        background:
+            #fffdf8;
+
+        color:
+            #65152d;
+
+        padding:
+            7px 14px;
+
+        border-radius:
+            7px;
+
+        cursor:
+            pointer;
+
+        font-family:
+            "Noto Sans Malayalam",
+            sans-serif;
+
+        font-size:
+            12px;
+
+        transition:
+            0.2s ease;
+    }
+
+
+    .photo-controls button:hover {
+
+        background:
+            #65152d;
+
+        color:
+            white;
+
+        border-color:
+            #65152d;
+
+    }
+
+
+    /* =====================================================
+       MOBILE
+       ===================================================== */
+
+    @media (max-width: 650px) {
+
+        .daily-image {
+            height: 330px;
+        }
+
+        .photo-scroll-hint {
+
+            font-size:
+                10px;
+
+            padding:
+                7px 11px;
+
+            max-width:
+                calc(100% - 25px);
+
+            overflow:
+                hidden;
+
+            text-overflow:
+                ellipsis;
+        }
+
+    }
+
+
+    @media (max-width: 400px) {
+
+        .daily-image {
+            height: 280px;
+        }
+
+    }
+
+</style>
+```
+
 </head>
 
 <body>
 
 <div class="site">
 
-    <!-- ================= HEADER ================= -->
+```
+<!-- =====================================================
+     CHURCH HEADER
+     ===================================================== -->
 
-    <header class="church-header">
+<header class="church-header">
 
-        <div class="cross-symbol">
-            ✝
+    <div class="cross-symbol">
+        ✝
+    </div>
+
+    <div class="header-content">
+
+        <p class="church-label">
+            പരിശുദ്ധ കന്യകാമറിയത്തിന്റെ ജനനത്തിരുനാൾ
+        </p>
+
+        <h1>
+            എട്ടുനോമ്പ് തിരുനാൾ
+        </h1>
+
+        <div class="year">
+            2026
         </div>
 
-        <div class="header-content">
-
-            <p class="church-label">
-                പരിശുദ്ധ കന്യകാമറിയത്തിന്റെ ജനനത്തിരുനാൾ
-            </p>
-
-            <h1>
-                എട്ടുനോമ്പ് തിരുനാൾ
-            </h1>
-
-            <div class="year">
-                2026
-            </div>
-
-            <div class="date-range">
-                ആഗസ്റ്റ് 31 മുതൽ സെപ്റ്റംബർ 8 വരെ
-            </div>
-
-            <div class="header-line">
-                <span></span>
-                <i class="fa-solid fa-cross"></i>
-                <span></span>
-            </div>
-
-            <p class="schedule-label">
-                തിരുക്കർമ്മങ്ങളുടെ സമയക്രമം
-            </p>
-
+        <div class="date-range">
+            ആഗസ്റ്റ് 31 മുതൽ സെപ്റ്റംബർ 8 വരെ
         </div>
 
-    </header>
+        <div class="header-line">
 
+            <span></span>
 
-    <!-- ================= NAVIGATION ================= -->
+            <i class="fa-solid fa-cross"></i>
 
-    <nav class="navigation" data-html2canvas-ignore="true">
-
-        <div class="nav-inner">
-
-            <button
-                class="nav-button active"
-                id="showOverall"
-            >
-                <i class="fa-solid fa-calendar-days"></i>
-                മുഴുവൻ സമയക്രമം
-            </button>
-
-            <button
-                class="nav-button"
-                id="showDaily"
-            >
-                <i class="fa-solid fa-image"></i>
-                ദിവസത്തെ പോസ്റ്റർ
-            </button>
-
-            <select id="dateSelector">
-                <option value="" selected disabled>
-                    തീയതി തിരഞ്ഞെടുക്കുക
-                </option>
-            </select>
-
-            <button
-                class="download-button"
-                id="downloadBtn"
-            >
-                <i class="fa-solid fa-download"></i>
-                പോസ്റ്റർ ഡൗൺലോഡ്
-            </button>
+            <span></span>
 
         </div>
 
-    </nav>
+        <p class="schedule-label">
+            തിരുക്കർമ്മങ്ങളുടെ സമയക്രമം
+        </p>
+
+    </div>
+
+</header>
 
 
-    <!-- ================= MAIN ================= -->
 
-    <main>
+<!-- =====================================================
+     NAVIGATION
+     ===================================================== -->
 
-        <!-- OVERALL VIEW -->
+<nav
+    class="navigation"
+    data-html2canvas-ignore="true"
+>
 
-        <section
-            id="overallView"
-            class="overall-view"
+    <div class="nav-inner">
+
+        <button
+            class="nav-button active"
+            id="showOverall"
         >
 
-            <!-- JS inserts all 9 days -->
+            <i class="fa-solid fa-calendar-days"></i>
 
-        </section>
+            മുഴുവൻ സമയക്രമം
+
+        </button>
 
 
-        <!-- DAILY POSTER VIEW -->
-
-        <section
-            id="dailyView"
-            class="daily-view"
-            hidden
+        <button
+            class="nav-button"
+            id="showDaily"
         >
 
-            <div class="daily-poster">
+            <i class="fa-solid fa-image"></i>
 
-                <!-- Image -->
+            ദിവസത്തെ പോസ്റ്റർ
 
-                <div class="daily-image">
+        </button>
+
+
+        <select
+            id="dateSelector"
+            aria-label="തീയതി തിരഞ്ഞെടുക്കുക"
+        >
+
+            <option
+                value=""
+                selected
+                disabled
+            >
+                തീയതി തിരഞ്ഞെടുക്കുക
+            </option>
+
+        </select>
+
+
+        <button
+            class="download-button"
+            id="downloadBtn"
+        >
+
+            <i class="fa-solid fa-download"></i>
+
+            പോസ്റ്റർ ഡൗൺലോഡ്
+
+        </button>
+
+    </div>
+
+</nav>
+
+
+
+<!-- =====================================================
+     MAIN
+     ===================================================== -->
+
+<main>
+
+
+    <!-- =================================================
+         OVERALL SCHEDULE
+         ================================================= -->
+
+    <section
+        id="overallView"
+        class="overall-view"
+    >
+
+        <!--
+            JavaScript automatically creates
+            all 9 individual days here.
+        -->
+
+    </section>
+
+
+
+    <!-- =================================================
+         DAILY POSTER
+         ================================================= -->
+
+    <section
+        id="dailyView"
+        class="daily-view"
+        hidden
+    >
+
+        <div class="daily-poster">
+
+
+            <!-- =========================================
+                 PHOTO EDITOR
+                 ========================================= -->
+
+            <div class="photo-editor">
+
+
+                <!--
+                    IMPORTANT:
+
+                    The image container is scrollable.
+
+                    The user can place the photo at the
+                    required vertical position so that
+                    Mother Mary's face is visible.
+                -->
+
+                <div
+                    class="daily-image"
+                    id="photoFrame"
+                    tabindex="0"
+                    aria-label="ചിത്രം മുകളിലേക്കും താഴേക്കും ക്രമീകരിക്കുക"
+                >
 
                     <img
                         id="dailyImage"
                         src="images.jpg"
-                        alt="തിരുനാൾ ചിത്രം"
+                        alt="എട്ടുനോമ്പ് തിരുനാൾ ചിത്രം"
                     >
 
-                    <div class="image-overlay"></div>
 
-                    <div class="image-cross">
+                    <div
+                        class="image-overlay"
+                    ></div>
+
+
+                    <div
+                        class="image-cross"
+                    >
                         ✝
                     </div>
 
                 </div>
 
 
-                <!-- Content -->
+                <!--
+                    Instruction shown only on screen.
+                    It will not appear in downloaded poster.
+                -->
 
-                <div class="daily-content">
+                <div
+                    class="photo-scroll-hint"
+                    id="photoHint"
+                    data-html2canvas-ignore="true"
+                >
 
-                    <p class="daily-small-title">
-                        എട്ടുനോമ്പ് തിരുനാൾ
-                    </p>
+                    ↕ ചിത്രം മുകളിലേക്കും താഴേക്കും
+                    സ്ക്രോൾ ചെയ്ത് ക്രമീകരിക്കാം
 
-                    <h2 id="focusDate"></h2>
+                </div>
 
-                    <div class="decorative-line">
-                        <span></span>
-                        <i class="fa-solid fa-cross"></i>
-                        <span></span>
-                    </div>
 
-                    <div id="focusEvents"></div>
+                <!--
+                    Extra controls for mobile users.
+                -->
+
+                <div
+                    class="photo-controls"
+                    data-html2canvas-ignore="true"
+                >
+
+                    <button
+                        type="button"
+                        id="photoUp"
+                    >
+
+                        ↑ മുകളിലേക്ക്
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        id="photoDown"
+                    >
+
+                        ↓ താഴേക്ക്
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        id="photoReset"
+                    >
+
+                        ↺ Reset
+
+                    </button>
 
                 </div>
 
             </div>
 
-        </section>
-
-    </main>
 
 
-    <!-- ================= FOOTER ================= -->
+            <!-- =========================================
+                 DAILY CONTENT
+                 ========================================= -->
 
-    <footer class="church-footer">
+            <div class="daily-content">
 
-        <div class="footer-cross">
-            ✝
+                <p class="daily-small-title">
+
+                    എട്ടുനോമ്പ് തിരുനാൾ
+
+                </p>
+
+
+                <h2
+                    id="focusDate"
+                ></h2>
+
+
+                <div class="decorative-line">
+
+                    <span></span>
+
+                    <i
+                        class="fa-solid fa-cross"
+                    ></i>
+
+                    <span></span>
+
+                </div>
+
+
+                <div
+                    id="focusEvents"
+                ></div>
+
+            </div>
+
         </div>
 
-        <p>
-            എല്ലാവരെയും എട്ടുനോമ്പ് തിരുനാൾ തിരുക്കർമ്മങ്ങളിൽ
-            ഭക്തിപൂർവ്വം പങ്കുചേരുവാൻ സ്നേഹപൂർവ്വം ക്ഷണിക്കുന്നു.
-        </p>
+    </section>
 
-        <div class="footer-line"></div>
+</main>
 
-        <small>
-            ദൈവാനുഗ്രഹം എല്ലാവരിലും ഉണ്ടാകട്ടെ
-        </small>
 
-    </footer>
+
+<!-- =====================================================
+     FOOTER
+     ===================================================== -->
+
+<footer class="church-footer">
+
+    <div class="footer-cross">
+        ✝
+    </div>
+
+
+    <p>
+
+        എല്ലാവരെയും എട്ടുനോമ്പ് തിരുനാൾ തിരുക്കർമ്മങ്ങളിൽ
+        ഭക്തിപൂർവ്വം പങ്കുചേരുവാൻ സ്നേഹപൂർവ്വം ക്ഷണിക്കുന്നു.
+
+    </p>
+
+
+    <div class="footer-line"></div>
+
+
+    <small>
+
+        ദൈവാനുഗ്രഹം എല്ലാവരിലും ഉണ്ടാകട്ടെ
+
+    </small>
+
+</footer>
+```
 
 </div>
 
+<!-- Toast -->
 
 <div
     id="toast"
     class="toast"
 ></div>
 
+<!-- =========================================================
+     EXISTING JAVASCRIPT
+     ========================================================= -->
 
 <script src="script.js"></script>
+
+<!-- =========================================================
+     PHOTO POSITION JAVASCRIPT
+     ========================================================= -->
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+
+        const photoFrame =
+            document.getElementById(
+                "photoFrame"
+            );
+
+
+        const photoUp =
+            document.getElementById(
+                "photoUp"
+            );
+
+
+        const photoDown =
+            document.getElementById(
+                "photoDown"
+            );
+
+
+        const photoReset =
+            document.getElementById(
+                "photoReset"
+            );
+
+
+        const photoHint =
+            document.getElementById(
+                "photoHint"
+            );
+
+
+        if (!photoFrame) return;
+
+
+
+        /*
+         * Scroll with mouse wheel
+         */
+
+        photoFrame.addEventListener(
+            "wheel",
+            function (event) {
+
+                /*
+                 * Only prevent page scrolling when
+                 * the photo actually has something to scroll.
+                 */
+
+                if (
+                    photoFrame.scrollHeight >
+                    photoFrame.clientHeight
+                ) {
+
+                    event.preventDefault();
+
+                    photoFrame.scrollTop +=
+                        event.deltaY;
+
+                }
+
+            },
+            {
+                passive: false
+            }
+        );
+
+
+
+        /*
+         * Keyboard controls
+         */
+
+        photoFrame.addEventListener(
+            "keydown",
+            function (event) {
+
+
+                if (
+                    event.key === "ArrowUp"
+                ) {
+
+                    event.preventDefault();
+
+                    photoFrame.scrollBy({
+
+                        top: -80,
+
+                        behavior: "smooth"
+
+                    });
+
+                }
+
+
+                if (
+                    event.key === "ArrowDown"
+                ) {
+
+                    event.preventDefault();
+
+                    photoFrame.scrollBy({
+
+                        top: 80,
+
+                        behavior: "smooth"
+
+                    });
+
+                }
+
+
+                if (
+                    event.key === "Home"
+                ) {
+
+                    event.preventDefault();
+
+                    photoFrame.scrollTo({
+
+                        top: 0,
+
+                        behavior: "smooth"
+
+                    });
+
+                }
+
+
+                if (
+                    event.key === "End"
+                ) {
+
+                    event.preventDefault();
+
+                    photoFrame.scrollTo({
+
+                        top:
+                            photoFrame.scrollHeight,
+
+                        behavior: "smooth"
+
+                    });
+
+                }
+
+            }
+        );
+
+
+
+        /*
+         * UP button
+         */
+
+        if (photoUp) {
+
+            photoUp.addEventListener(
+                "click",
+                function () {
+
+                    photoFrame.scrollBy({
+
+                        top: -100,
+
+                        behavior: "smooth"
+
+                    });
+
+                }
+            );
+
+        }
+
+
+
+        /*
+         * DOWN button
+         */
+
+        if (photoDown) {
+
+            photoDown.addEventListener(
+                "click",
+                function () {
+
+                    photoFrame.scrollBy({
+
+                        top: 100,
+
+                        behavior: "smooth"
+
+                    });
+
+                }
+            );
+
+        }
+
+
+
+        /*
+         * RESET button
+         */
+
+        if (photoReset) {
+
+            photoReset.addEventListener(
+                "click",
+                function () {
+
+                    photoFrame.scrollTo({
+
+                        top: 0,
+
+                        behavior: "smooth"
+
+                    });
+
+                }
+            );
+
+        }
+
+
+
+        /*
+         * Hide the instruction after
+         * the user starts scrolling.
+         */
+
+        let hintTimer;
+
+
+        photoFrame.addEventListener(
+            "scroll",
+            function () {
+
+                if (!photoHint) return;
+
+
+                photoHint.style.opacity =
+                    "0";
+
+
+                clearTimeout(
+                    hintTimer
+                );
+
+
+                hintTimer = setTimeout(
+                    function () {
+
+                        photoHint.style.opacity =
+                            "0.95";
+
+                    },
+                    1200
+                );
+
+            }
+        );
+
+
+
+        /*
+         * Touch support:
+         *
+         * On mobile the normal vertical
+         * touch gesture inside the photo
+         * scrolls the image.
+         */
+
+        photoFrame.addEventListener(
+            "touchstart",
+            function () {
+
+                photoFrame.style.cursor =
+                    "grabbing";
+
+            }
+        );
+
+
+        photoFrame.addEventListener(
+            "touchend",
+            function () {
+
+                photoFrame.style.cursor =
+                    "ns-resize";
+
+            }
+        );
+
+    }
+
+);
+
+</script>
 
 </body>
 </html>
